@@ -1,29 +1,12 @@
 # Samajilo ecommerce
-### This repo is for the ecommerce project of Samajilo.\
-### This repo will be hosted on Github pages.
+#### This repo is for the ecommerce project of Samajilo. This repo will be hosted on Github pages.
 
 
-### Contact [leo] (https://github.com/leodahal4) for more information.
+###### Link to site
 
-## Project setup
-```
-yarn install
-```
+[https://samajilo.github.io/ecommerce/] (https://samajilo.github.io/ecommerce/)
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+##### Contact
+[Leo] (https://github.com/leodahal4) && [Merin] (https://github.com/iammerin) for more details.
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -24,38 +24,17 @@
       <v-btn text rounded to="/deals">Deals</v-btn>
       <v-btn text rounded to="/coupons">Coupons</v-btn>
       <v-btn text rounded to="/stores">Stores</v-btn>
-      <v-menu
-        offset-y
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            color="primary"
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            Dropdown
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item>
-            <v-list-item-title>fjads</v-list-item-title>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-title>fjads</v-list-item-title>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-title>fjads</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
       <v-chip
         class="ma-2"
         outlined
         dark
         large
       >
+        <v-icon
+          class="mr-2"
+        >
+          mdi-cart
+        </v-icon>
         Cart
       </v-chip>
     </div>
