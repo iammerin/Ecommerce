@@ -1,4 +1,9 @@
-# ecommerce
+# Samajilo ecommerce
+### This repo is for the ecommerce project of Samajilo.\
+### This repo will be hosted on Github pages.
+
+
+### Contact [leo] (https://github.com/leodahal4) for more information.
 
 ## Project setup
 ```
