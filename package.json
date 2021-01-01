@@ -43,27 +43,17 @@
     "env": {
       "node": true
     },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/standard"
-    ],
+    "extends": ["plugin:vue/essential", "@vue/standard"],
     "parserOptions": {
       "parser": "babel-eslint"
     },
     "rules": {}
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not dead"],
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "*.{js,jsx,vue}": ["vue-cli-service lint", "git add"]
   }
 }
