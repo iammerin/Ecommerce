@@ -20,16 +20,13 @@
                     <v-list-item-title v-text="item.title"></v-list-item-title>
                   </v-list-item-content>
                 </template>
-
                 <v-list-item
                   v-for="child in item.items"
                   :key="child.title"
+                  link
+                  :to="child.title"
                 >
-                  <v-list-item-content>
-                    <router-link :to="child.title">
-                      <v-list-item-title v-text="child.title"></v-list-item-title>
-                    </router-link>
-                  </v-list-item-content>
+                  <v-list-item-title v-text="child.title"></v-list-item-title>
                 </v-list-item>
               </v-list-group>
             </v-list>
@@ -96,53 +93,88 @@ export default {
       selectedItem: 1,
       items: [
         {
-          action: 'mdi-ticket',
-          items: [{ title: 'List Item' }],
-          title: 'Attractions'
-        },
-        {
-          action: 'mdi-silverware-fork-knife',
-          active: true,
           items: [
-            { title: 'Breakfast & brunch' },
-            { title: 'Breakfast & brunch' },
-            { title: 'Breakfast & brunch' },
-            { title: 'Breakfast & brunch' },
-            { title: 'Breakfast & brunch' },
-            { title: 'Breakfast & brunch' },
-            { title: 'New American' },
-            { title: 'New American' },
-            { title: 'New American' },
-            { title: 'New American' },
-            { title: 'New American' },
-            { title: 'New American' },
-            { title: 'Sushi' }
+            { title: 'Dresses' },
+            { title: 'Handbags' },
+            { title: 'Shoes' },
+            { title: 'Jackets' },
+            { title: 'Shirts' }
           ],
-          title: 'Dining'
+          title: 'Clothing'
         },
         {
-          action: 'mdi-school',
-          items: [{ title: 'List Item' }],
+          items: [
+            { title: 'Gaming' },
+            { title: 'Laptop Skins' },
+            { title: 'Apple' },
+            { title: 'Dell' },
+            { title: 'Lenovo' },
+            { title: 'Microsoft' },
+            { title: 'Asus' },
+            { title: 'Adapters' },
+            { title: 'Batteries' }
+          ],
+          title: 'Electronics'
+        },
+        {
+          items: [
+            { title: 'Sport Wear' },
+            { title: 'Shorts' },
+            { title: 'School Bags' },
+            { title: 'Wipes' },
+            { title: 'Footwear' },
+            { title: 'Toys' },
+            { title: 'Bags' },
+            { title: 'Blazzers' }
+          ],
           title: 'Education'
         },
         {
-          action: 'mdi-run',
-          items: [{ title: 'List Item' }],
+          items: [
+            { title: 'Sport Wear' },
+            { title: 'Shorts' },
+            { title: 'School Bags' },
+            { title: 'Wipes' },
+            { title: 'Footwear' },
+            { title: 'Toys' },
+            { title: 'Bags' },
+            { title: 'Blazzers' }
+          ],
           title: 'Family'
         },
         {
-          action: 'mdi-bottle-tonic-plus',
-          items: [{ title: 'List Item' }],
+          items: [
+            { title: 'Sport Wear' },
+            { title: 'Shorts' },
+            { title: 'School Bags' },
+            { title: 'Wipes' },
+            { title: 'Footwear' },
+            { title: 'Toys' },
+            { title: 'Bags' },
+            { title: 'Blazzers' }
+          ],
           title: 'Health'
         },
         {
-          action: 'mdi-content-cut',
-          items: [{ title: 'List Item' }],
+          items: [
+            { title: 'Chair' },
+            { title: 'Desk' },
+            { title: 'Stamps' }
+          ],
+          active: true,
           title: 'Office'
         },
         {
-          action: 'mdi-tag',
-          items: [{ title: 'List Item' }],
+          items: [
+            { title: 'Sport Wear' },
+            { title: 'Shorts' },
+            { title: 'School Bags' },
+            { title: 'Wipes' },
+            { title: 'Footwear' },
+            { title: 'Toys' },
+            { title: 'Bags' },
+            { title: 'Blazzers' }
+          ],
           title: 'Promotions'
         }
       ]
@@ -153,6 +185,6 @@ export default {
 
 <style>
 .navigationMenu {
-  overflow-y: scroll !important;
+  overflow-y: auto !important;
 }
 </style>
