@@ -1,9 +1,11 @@
 <template>
   <v-app-bar
     max-height="70"
-    color="transparent"
+    :color="appBarcolor"
     app
+    v-scroll="changeColorOnScroll"
     elevate-on-scroll
+    :dark="dark"
   >
     <v-spacer></v-spacer>
     <v-toolbar-title>
@@ -78,11 +80,6 @@
 <script>
 export default {
   name: 'AppBar',
-  methods: {
-    searchButton () {
-      console.log('clicked')
-    }
-  },
   data () {
     return {
       routes: [
@@ -91,7 +88,25 @@ export default {
         { name: 'Deals', link: '/deals' },
         { name: 'TOA', link: '/terms-and-conditions' },
         { name: 'Stores', link: '/stores' }
-      ]
+      ],
+      appBarcolor: 'transparent',
+      dark: false
+    }
+  },
+  methods: {
+    searchButton () {
+      console.log('clicked')
+    },
+    changeColorOnScroll (e) {
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset || e.target.scrollTop || 0
+      if (top > 20) {
+        this.appBarcolor = 'primary'
+        this.dark = true
+      } else {
+        this.appBarcolor = 'transparent'
+        this.dark = false
+      }
     }
   }
 }

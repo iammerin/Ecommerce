@@ -1,15 +1,17 @@
 <template>
   <div class="home">
-    This is the home page.
+    <CourselWithMenu />
   </div>
 </template>
 
 <script>
+import CourselWithMenu from '@/components/CarouselWithMenu'
 // @ is an alias to /src
 
 export default {
   name: 'Home',
   components: {
+    CourselWithMenu
   }
 }
 </script>
