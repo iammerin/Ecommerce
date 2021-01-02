@@ -4,9 +4,12 @@
 
 ###### Link to site
 
-[https://samajilo.github.io/ecommerce/] (https://samajilo.github.io/ecommerce/)
+[ecommerce] 
 
 
 ##### Contact
-[Leo] (https://github.com/leodahal4) && [Merin] (https://github.com/iammerin) for more details.
+[leo] && [merin]  for more details.
 
+[ecommerce]: https://samajilo.github.io/ecommerce
+[leo]: https://github.com/leodahal4
+[merin]: https://github.com/iammerin
