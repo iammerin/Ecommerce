@@ -4,28 +4,34 @@
       <v-row>
         <v-col cols="3">
           <v-card
-            class="mx-auto"
-            max-width="300"
-            tile
+            class="mx-auto navigationMenu"
+            max-width="500"
+            max-height="600"
           >
-            <v-list disabled>
-              <v-subheader>REPORTS</v-subheader>
-              <v-list-item-group
-                v-model="selectedItem"
-                color="primary"
+            <v-list>
+              <v-list-group
+                v-for="item in items"
+                :key="item.title"
+                v-model="item.active"
+                no-action
               >
-                <v-list-item
-                  v-for="(item, i) in items"
-                  :key="i"
-                >
-                  <v-list-item-icon>
-                    <v-icon v-text="item.icon"></v-icon>
-                  </v-list-item-icon>
+                <template v-slot:activator>
                   <v-list-item-content>
-                    <v-list-item-title v-text="item.text"></v-list-item-title>
+                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                  </v-list-item-content>
+                </template>
+
+                <v-list-item
+                  v-for="child in item.items"
+                  :key="child.title"
+                >
+                  <v-list-item-content>
+                    <router-link :to="child.title">
+                      <v-list-item-title v-text="child.title"></v-list-item-title>
+                    </router-link>
                   </v-list-item-content>
                 </v-list-item>
-              </v-list-item-group>
+              </v-list-group>
             </v-list>
           </v-card>
         </v-col>
@@ -36,6 +42,7 @@
             interval="6000"
             progress
             progress-color="primary"
+            height="600"
           >
             <v-carousel-item
               v-for="(item, i) in carouselItems"
@@ -88,13 +95,64 @@ export default {
       ],
       selectedItem: 1,
       items: [
-        { text: 'Real-Time', icon: 'mdi-clock' },
-        { text: 'Audience', icon: 'mdi-account' },
-        { text: 'Conversions', icon: 'mdi-flag' }
+        {
+          action: 'mdi-ticket',
+          items: [{ title: 'List Item' }],
+          title: 'Attractions'
+        },
+        {
+          action: 'mdi-silverware-fork-knife',
+          active: true,
+          items: [
+            { title: 'Breakfast & brunch' },
+            { title: 'Breakfast & brunch' },
+            { title: 'Breakfast & brunch' },
+            { title: 'Breakfast & brunch' },
+            { title: 'Breakfast & brunch' },
+            { title: 'Breakfast & brunch' },
+            { title: 'New American' },
+            { title: 'New American' },
+            { title: 'New American' },
+            { title: 'New American' },
+            { title: 'New American' },
+            { title: 'New American' },
+            { title: 'Sushi' }
+          ],
+          title: 'Dining'
+        },
+        {
+          action: 'mdi-school',
+          items: [{ title: 'List Item' }],
+          title: 'Education'
+        },
+        {
+          action: 'mdi-run',
+          items: [{ title: 'List Item' }],
+          title: 'Family'
+        },
+        {
+          action: 'mdi-bottle-tonic-plus',
+          items: [{ title: 'List Item' }],
+          title: 'Health'
+        },
+        {
+          action: 'mdi-content-cut',
+          items: [{ title: 'List Item' }],
+          title: 'Office'
+        },
+        {
+          action: 'mdi-tag',
+          items: [{ title: 'List Item' }],
+          title: 'Promotions'
+        }
       ]
     }
   }
 }
 </script>
 
-<style></style>
+<style>
+.navigationMenu {
+  overflow-y: scroll !important;
+}
+</style>
