@@ -62,6 +62,15 @@
                     ></v-progress-circular>
                   </v-row>
                 </template>
+                <v-col cols="12">
+                  <v-sheet color="transparent" height="600" class="d-flex align-content-end flex-wrap" tile>
+                    <div class="pa-5">
+                      <v-btn text :to="item.src" class="text-capitalize">
+                        Shop Now!
+                      </v-btn>
+                    </div>
+                  </v-sheet>
+                </v-col>
               </v-img>
             </v-carousel-item>
           </v-carousel>
