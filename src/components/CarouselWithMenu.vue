@@ -6,9 +6,10 @@
           <v-card
             class="mx-auto navigationMenu"
             max-width="500"
-            max-height="600"
+            max-height="700"
           >
             <v-list>
+              <v-subheader>Categories</v-subheader>
               <v-list-group
                 v-for="item in items"
                 :key="item.title"
@@ -39,7 +40,7 @@
             interval="6000"
             progress
             progress-color="primary"
-            height="600"
+            height="700"
           >
             <v-carousel-item
               v-for="(item, i) in carouselItems"
@@ -63,9 +64,9 @@
                   </v-row>
                 </template>
                 <v-col cols="12">
-                  <v-sheet color="transparent" height="600" class="d-flex align-content-end flex-wrap" tile>
+                  <v-sheet color="transparent" height="670" class="d-flex align-content-end flex-wrap" tile>
                     <div class="pa-5">
-                      <v-btn text :to="item.src" class="text-capitalize">
+                      <v-btn text :to="item.src" class="text-h4 text-capitalize">
                         Shop Now!
                       </v-btn>
                     </div>
@@ -109,6 +110,7 @@ export default {
             { title: 'Jackets' },
             { title: 'Shirts' }
           ],
+          active: true,
           title: 'Clothing'
         },
         {
@@ -170,7 +172,6 @@ export default {
             { title: 'Desk' },
             { title: 'Stamps' }
           ],
-          active: true,
           title: 'Office'
         },
         {
