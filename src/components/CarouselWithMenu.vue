@@ -66,7 +66,12 @@
                 <v-col cols="12">
                   <v-sheet color="transparent" height="670" class="d-flex align-content-end flex-wrap" tile>
                     <div class="pa-5">
-                      <v-btn text :to="item.src" class="text-h4 text-capitalize">
+                      <v-btn text
+                        :to="item.src"
+                        :class="shopClasses"
+                        @mouseover="hoverOver"
+                        @mouseout="hoverOut"
+                      >
                         Shop Now!
                       </v-btn>
                     </div>
@@ -82,10 +87,20 @@
 </template>
 
 <script>
+import 'animate.css'
 export default {
   name: 'CarouselWithMenu',
+  methods: {
+    hoverOver () {
+      this.shopClasses = ['text-h4', 'text-capitalize', 'animate__animated', 'animate__tada']
+    },
+    hoverOut () {
+      this.shopClasses = ['text-h4', 'text-capitalize']
+    }
+  },
   data () {
     return {
+      shopClasses: ['text-h4', 'text-capitalize'],
       carouselItems: [
         {
           src: 'https://picsum.photos/1100/500?random=1'
