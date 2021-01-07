@@ -83,7 +83,6 @@ export default {
   data () {
     return {
       routes: [
-        { name: 'Categories', link: '/link' },
         { name: 'About', link: '/about' },
         { name: 'Deals', link: '/deals' },
         { name: 'TOA', link: '/terms-and-conditions' },
