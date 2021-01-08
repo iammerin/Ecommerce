@@ -23,7 +23,7 @@
           class="mr-5"
         >
         </v-img>
-        <div :class="titleColor">
+        <div :class="appBarContentColor">
           Ecommerce
         </div>
       </v-btn>
@@ -37,6 +37,7 @@
         filled
         rounded
         dense
+        outlined
         hide-details
         append-icon="mdi-magnify"
         single-line
@@ -52,7 +53,9 @@
         :key="link.name"
         :to="link.link"
       >
-        {{ link.name }}
+        <div :class="appBarContentColor">
+          {{ link.name }}
+        </div>
       </v-btn>
       <v-menu
         offset-y
@@ -61,19 +64,21 @@
           <v-btn
             v-bind="attrs"
             v-on="on"
-            width="100"
             text
+            rounded
+            color="transparent"
           >
             <v-chip
               class="ma-2"
               outlined
-              dark
             >
               <v-icon
                 class="mr-2"
               >
                 mdi-cart
               </v-icon>
+              {{produtQuantity}}
+
               Cart
             </v-chip>
           </v-btn>
@@ -102,7 +107,8 @@ export default {
       ],
       appBarcolor: 'transparent',
       dark: false,
-      titleColor: 'blue--text'
+      appBarContentColor: 'blue--text',
+      produtQuantity: 0
     }
   },
   methods: {
@@ -114,11 +120,11 @@ export default {
       const top = window.pageYOffset || e.target.scrollTop || 0
       if (top > 20) {
         this.appBarcolor = 'primary'
-        this.titleColor = 'white--text'
+        this.appBarContentColor = 'white--text'
         this.dark = true
       } else {
         this.appBarcolor = 'transparent'
-        this.titleColor = 'blue--text'
+        this.appBarContentColor = 'blue--text'
         this.dark = false
       }
     }
@@ -126,6 +132,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .v-chip:hover{
+    cursor: pointer;
+  }
 </style>
