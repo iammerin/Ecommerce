@@ -1,5 +1,9 @@
 <template>
-  <v-row align="center" justify="center" class="mt-2">
+  <v-row
+    align="center"
+    justify="center"
+    class="mt-2"
+  >
     <v-col cols="10">
       <v-row>
         <!-- <v&#45;col cols="3"> -->
@@ -35,52 +39,58 @@
         <!-- </v&#45;col> -->
         <v-col cols="12">
           <v-card elevation="24">
-          <v-carousel
-            hide-delimiters
-            cycle
-            interval="6000"
-            progress
-            progress-color="primary"
-            height="540"
-          >
-            <v-carousel-item
-              v-for="(item, i) in carouselItems"
-              :key="i"
+            <v-carousel
+              hide-delimiters
+              cycle
+              interval="6000"
+              progress
+              progress-color="primary"
+              height="73vh"
             >
-              <v-img
-                :src="item.src"
-                :lazy-src="item.src"
-                class="fill-height"
+              <v-carousel-item
+                v-for="(item, i) in carouselItems"
+                :key="i"
               >
-                <template v-slot:placeholder>
-                  <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                  >
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                    ></v-progress-circular>
-                  </v-row>
-                </template>
-                <v-col cols="12">
-                  <v-sheet color="transparent" height="540" class="d-flex align-content-end flex-wrap" tile>
-                    <div class="pa-5">
-                      <v-btn text
-                        :to="item.src"
-                        :class="shopClasses"
-                        @mouseover="hoverOver"
-                        @mouseout="hoverOut"
-                      >
-                        Shop Now!
-                      </v-btn>
-                    </div>
-                  </v-sheet>
-                </v-col>
-              </v-img>
-            </v-carousel-item>
-          </v-carousel>
+                <v-img
+                  :src="item.src"
+                  :lazy-src="item.src"
+                  class="fill-height"
+                >
+                  <template v-slot:placeholder>
+                    <v-row
+                      class="fill-height ma-0"
+                      align="center"
+                      justify="center"
+                    >
+                      <v-progress-circular
+                        indeterminate
+                        color="primary"
+                      />
+                    </v-row>
+                  </template>
+                  <v-col cols="12">
+                    <v-sheet
+                      color="transparent"
+                      height="72vh"
+                      class="d-flex align-content-end flex-wrap"
+                      tile
+                    >
+                      <div class="pa-5">
+                        <v-btn
+                          text
+                          :to="item.src"
+                          :class="shopClasses"
+                          @mouseover="hoverOver"
+                          @mouseout="hoverOut"
+                        >
+                          Shop Now!
+                        </v-btn>
+                      </div>
+                    </v-sheet>
+                  </v-col>
+                </v-img>
+              </v-carousel-item>
+            </v-carousel>
           </v-card>
         </v-col>
       </v-row>

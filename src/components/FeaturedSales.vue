@@ -6,7 +6,7 @@
   >
     <v-col cols="10">
       <v-row class="mt-5 mb-10">
-        <v-divider></v-divider>
+        <v-divider />
       </v-row>
       <v-row>
         <div class="text-h3">
@@ -34,7 +34,7 @@
                 <v-progress-circular
                   indeterminate
                   color="primary"
-                ></v-progress-circular>
+                />
               </v-row>
             </template>
           </v-img>

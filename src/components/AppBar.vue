@@ -21,17 +21,17 @@
           contain
           width="60"
           class="mr-5"
-        >
-        </v-img>
+        />
         <div :class="appBarContentColor">
           Ecommerce
         </div>
       </v-btn>
     </v-toolbar-title>
-    <v-spacer></v-spacer>
+    <v-spacer class="hidden-xs-and-down" />
     <v-form
       method="POST"
       action="#"
+      class="hidden-xs-and-down"
     >
       <v-text-field
         filled
@@ -43,9 +43,12 @@
         single-line
         @click:append="searchButton"
         class="ma-5"
-      ></v-text-field>
+      />
     </v-form>
-    <div id="nav">
+    <div
+      id="nav"
+      class="hidden-xs-and-down"
+    >
       <v-btn
         text
         rounded
@@ -57,9 +60,7 @@
           {{ link.name }}
         </div>
       </v-btn>
-      <v-menu
-        offset-y
-      >
+      <v-menu offset-y>
         <template v-slot:activator="{ attrs, on }">
           <v-btn
             v-bind="attrs"
@@ -72,25 +73,157 @@
               class="ma-2"
               outlined
             >
-              <v-icon
-                class="mr-2"
-              >
+              <v-icon class="mr-2">
                 mdi-cart
               </v-icon>
-              {{produtQuantity}}
-
+              {{ produtQuantity }}
               Cart
             </v-chip>
           </v-btn>
         </template>
         <v-list>
-        <v-list-item>
-          <v-list-item-title>No Items on the cart.</v-list-item-title>
-        </v-list-item>
-      </v-list>
+          <v-list-item>
+            <v-list-item-title>No Items on the cart.</v-list-item-title>
+          </v-list-item>
+        </v-list>
       </v-menu>
     </div>
-    <v-spacer></v-spacer>
+    <v-spacer />
+    <div class="hidden-xs-and-down mr-5">
+      <v-menu offset-y>
+        <template v-slot:activator="{ attrs, on }">
+          <v-btn
+            text
+            rounded
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>
+              mdi-account
+            </v-icon>
+            Account
+          </v-btn>
+        </template>
+        <v-list>
+          <v-dialog
+            v-model="loginDialog"
+            persistent
+            max-width="600px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-list-item>
+                <v-list-item-title
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  Login
+                </v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="headline">User Profile</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-text-field
+                        label="Email*"
+                        required
+                      />
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field
+                        label="Password*"
+                        type="password"
+                        required
+                      />
+                    </v-col>
+                  </v-row>
+                </v-container>
+                <small>*indicates required field</small>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="loginDialog = false"
+                >
+                  Close
+                </v-btn>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="loginDialog = false"
+                >
+                  Login
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-dialog
+            v-model="registerDialog"
+            persistent
+            max-width="600px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-list-item>
+                <v-list-item-title
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  Register
+                </v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="headline">User Profile</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-text-field
+                        label="Email*"
+                        required
+                      />
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field
+                        label="Password*"
+                        type="password"
+                        required
+                      />
+                    </v-col>
+                  </v-row>
+                </v-container>
+                <small>*indicates required field</small>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="registerDialog = false"
+                >
+                  Close
+                </v-btn>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="registerDialog = false"
+                >
+                  Submit
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-list>
+      </v-menu>
+    </div>
   </v-app-bar>
 </template>
 
@@ -108,7 +241,9 @@ export default {
       appBarcolor: 'transparent',
       dark: false,
       appBarContentColor: 'blue--text',
-      produtQuantity: 0
+      produtQuantity: 0,
+      loginDialog: false,
+      registerDialog: false
     }
   },
   methods: {
@@ -133,7 +268,7 @@ export default {
 </script>
 
 <style scoped>
-  .v-chip:hover{
-    cursor: pointer;
-  }
+.v-chip:hover {
+  cursor: pointer;
+}
 </style>

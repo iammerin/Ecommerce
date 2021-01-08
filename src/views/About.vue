@@ -5,48 +5,78 @@
     class="mt-20"
   >
     <v-col cols="10">
-      <v-card>
-        <v-card-text>
-          <v-row>
-            <v-col cols="6">
-        <v-card-title class="text-h1">
-          About Page.
-        </v-card-title>
-              <div class="text-h2 mt-10">
-                Hope, the developers will update this page soon.
-              </div>
-            </v-col>
-            <v-col cols="6">
-              <v-hover
-                v-slot="{ hover }"
+      <v-timeline
+        align-top
+        :dense="$vuetify.breakpoint.smAndDown"
+        class="mt-10"
+      >
+        <v-timeline-item
+          v-for="(item, i) in items"
+          :key="i"
+          :color="item.color"
+          :icon="item.icon"
+          fill-dot
+        >
+          <v-card
+            :color="item.color"
+            dark
+          >
+            <v-card-title class="title">
+              Lorem Ipsum Dolor
+            </v-card-title>
+            <v-card-text class="white text--primary">
+              <p>Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.</p>
+              <v-btn
+                :color="item.color"
+                class="mx-0"
+                outlined
               >
-                <v-card
-                  :elevation="hover? 16 : 1"
-                >
-                    <v-img
-                      src="https://picsum.photos/id/1/600/600"
-                      lazy-src="https://picsum.photos/id/1/600/600"
-                      contain
-                    >
-                      <template v-slot:placeholder>
-                        <v-row
-                          class="fill-height ma-0"
-                          align="center"
-                          justify="center"
-                        >
-                          <v-progress-circular
-                            indeterminate
-                            color="primary"
-                          ></v-progress-circular>
-                        </v-row>
-                      </template>
-                    </v-img>
-                </v-card>
-              </v-hover>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
+                Button
+              </v-btn>
+            </v-card-text>
+          </v-card>
+        </v-timeline-item>
+      </v-timeline>
     </v-col>
   </v-row>
 </template>
+<script>
+export default {
+  data: () => ({
+    items: [
+      {
+        color: 'red lighten-2',
+        icon: 'mdi-star'
+      },
+      {
+        color: 'purple darken-1',
+        icon: 'mdi-book-variant'
+      },
+      {
+        color: 'green lighten-1',
+        icon: 'mdi-airballoon'
+      },
+      {
+        color: 'indigo',
+        icon: 'mdi-buffer'
+      },
+      {
+        color: 'purple darken-1',
+        icon: 'mdi-book-variant'
+      },
+      {
+        color: 'green lighten-1',
+        icon: 'mdi-airballoon'
+      },
+      {
+        color: 'purple darken-1',
+        icon: 'mdi-book-variant'
+      },
+      {
+        color: 'green lighten-1',
+        icon: 'mdi-airballoon'
+      }
+    ]
+  })
+}
+</script>

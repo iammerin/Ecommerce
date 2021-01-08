@@ -1,61 +1,61 @@
 <template>
-    <v-row
-      align="center"
-      justify="center"
-      class="mt-5"
+  <v-row
+    align="center"
+    justify="center"
+    class="mt-5"
+  >
+    <v-col
+      cols="10"
+      class="d-flex"
     >
       <v-col
-        cols="10"
-        class="d-flex"
+        cols="2"
+        v-for="(featured, index) in categories"
+        :key="index"
       >
-        <v-col
-          cols="2"
-          v-for="(featured, index) in categories"
-          :key="index"
+        <v-hover
+          v-slot="{ hover }"
         >
-          <v-hover
-            v-slot="{ hover }"
+          <v-card
+            :elevation="hover? 16 : 2"
+            :class="{ 'on-hover': hover }"
+            height="150"
+            :to="featured.link"
           >
-            <v-card
-              :elevation="hover? 16 : 2"
-              :class="{ 'on-hover': hover }"
-              height="150"
-              :to="featured.link"
-            >
-              <v-card-text>
-                <v-img
-                  :src="featured.image"
-                  :lazy-src="featured.image"
-                  contain
-                >
-                  <template v-slot:placeholder>
-                    <v-row
-                      class="fill-height ma-0"
-                      align="center"
-                      justify="center"
-                    >
-                      <v-progress-circular
-                        indeterminate
-                        color="primary"
-                      ></v-progress-circular>
-                    </v-row>
-                  </template>
-                </v-img>
-              </v-card-text>
-              <v-card-actions>
-                <v-row
-                  align="center"
-                  justify="center"
-                  class="mb-3 subtitle-2"
-                >
-                  {{ featured.name }}
-                </v-row>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-col>
+            <v-card-text>
+              <v-img
+                :src="featured.image"
+                :lazy-src="featured.image"
+                contain
+              >
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                    />
+                  </v-row>
+                </template>
+              </v-img>
+            </v-card-text>
+            <v-card-actions>
+              <v-row
+                align="center"
+                justify="center"
+                class="mb-3 subtitle-2"
+              >
+                {{ featured.name }}
+              </v-row>
+            </v-card-actions>
+          </v-card>
+        </v-hover>
       </v-col>
-    </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
