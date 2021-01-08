@@ -41,7 +41,7 @@
             interval="6000"
             progress
             progress-color="primary"
-            height="550"
+            height="540"
           >
             <v-carousel-item
               v-for="(item, i) in carouselItems"
@@ -65,7 +65,7 @@
                   </v-row>
                 </template>
                 <v-col cols="12">
-                  <v-sheet color="transparent" height="545" class="d-flex align-content-end flex-wrap" tile>
+                  <v-sheet color="transparent" height="540" class="d-flex align-content-end flex-wrap" tile>
                     <div class="pa-5">
                       <v-btn text
                         :to="item.src"
