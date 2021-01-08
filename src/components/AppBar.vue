@@ -6,17 +6,29 @@
     v-scroll="changeColorOnScroll"
     elevate-on-scroll
     :dark="dark"
+    class="ml-5 mr-5"
   >
-    <v-spacer></v-spacer>
     <v-toolbar-title>
       <v-btn
         text
         rounded
         to="/"
+        color="transparent"
       >
-        Ecommerce
+        <v-img
+          src="../assets/demologo.png"
+          height="60"
+          contain
+          width="60"
+          class="mr-5"
+        >
+        </v-img>
+        <div :class="titleColor">
+          Ecommerce
+        </div>
       </v-btn>
     </v-toolbar-title>
+    <v-spacer></v-spacer>
     <v-form
       method="POST"
       action="#"
@@ -89,7 +101,8 @@ export default {
         { name: 'Stores', link: '/stores' }
       ],
       appBarcolor: 'transparent',
-      dark: false
+      dark: false,
+      titleColor: 'blue--text'
     }
   },
   methods: {
@@ -101,9 +114,11 @@ export default {
       const top = window.pageYOffset || e.target.scrollTop || 0
       if (top > 20) {
         this.appBarcolor = 'primary'
+        this.titleColor = 'white--text'
         this.dark = true
       } else {
         this.appBarcolor = 'transparent'
+        this.titleColor = 'blue--text'
         this.dark = false
       }
     }
