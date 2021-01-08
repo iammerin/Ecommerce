@@ -11,7 +11,11 @@
         </transition>
       </v-main>
     </div>
-    <v-container fill-height fluid v-else>
+    <v-container
+      fill-height
+      fluid
+      v-else
+    >
       <v-row
         align="center"
         height="100%"
