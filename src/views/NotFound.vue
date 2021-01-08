@@ -22,7 +22,7 @@
                 v-slot="{ hover }"
               >
                 <v-card
-                  :elevation="hover? 16 : 0"
+                  :elevation="hover? 16 : 1"
                 >
                     <v-img
                       src="https://picsum.photos/id/237/600/600"
