@@ -19,6 +19,7 @@
           <v-card
             :elevation="hover? 16 : 2"
             :class="{ 'on-hover': hover }"
+            class="cardToAnimateOnHover slide"
             height="150"
             :to="featured.link"
           >
@@ -27,6 +28,7 @@
                 :src="featured.image"
                 :lazy-src="featured.image"
                 contain
+                class="fill-height"
               >
                 <template v-slot:placeholder>
                   <v-row
@@ -46,7 +48,7 @@
               <v-row
                 align="center"
                 justify="center"
-                class="mb-3 subtitle-2"
+                class="mb-3 subtitle-2 text"
               >
                 {{ featured.name }}
               </v-row>
@@ -81,4 +83,33 @@ export default {
   .v-card:hover{
     cursor: pointer;
   }
+  .slide {
+  position: relative;
+  overflow: hidden;
+}
+
+.text {
+  position: relative;
+  transition: 0.5s;
+}
+
+.slide::before {
+  content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 130%;
+height: 55px;
+background-color: #007bff!important;
+transform: translate(-110%, 0) skew(-30deg);
+transition: 0.5s;
+}
+
+.slide:hover .text {
+  color: #fff;
+}
+
+.slide:hover::before {
+  transform: translate(-5%, 0) skew(-15deg);
+}
 </style>

@@ -23,6 +23,7 @@
         >
           <v-img
             :src="images.url"
+            :lazy-src="images.url"
             :alt="images.alt"
           >
             <template v-slot:placeholder>
