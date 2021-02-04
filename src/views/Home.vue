@@ -2,7 +2,9 @@
   <div class="home">
     <CourselWithMenu />
     <FeaturedCategories />
-    <FeaturedSales />:
+    <FeaturedSales />
+    <FeaturedSales />
+    <FeaturedSales />
   </div>
 </template>
 
