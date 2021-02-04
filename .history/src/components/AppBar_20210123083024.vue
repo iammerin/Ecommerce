@@ -61,37 +61,25 @@
         </div>
       </v-btn>
       <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-chip
-            class="ma-2"
-            outlined
+        <template v-slot:activator="{ attrs, on }">
+          <v-btn
             v-bind="attrs"
             v-on="on"
+            text
+            rounded
+            color="transparent"
           >
-            <v-icon class="mr-2">
-              mdi-cart
-            </v-icon>
-            {{ produtQuantity }}
-            Cart
-          </v-chip>
-        </template>
-        <template v-slot:default="dialog">
-          <v-card>
-            <v-card-text>
-              <div class="text-h2 pa-12">
-                Hello world!
-              </div>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn
-                scrollable
-                text
-                @click="dialog.value = false"
-              >
-                Close
-              </v-btn>
-            </v-card-actions>
-          </v-card>
+            <v-chip
+              class="ma-2"
+              outlined
+            >
+              <v-icon class="mr-2">
+                mdi-cart
+              </v-icon>
+              {{ produtQuantity }}
+              Cart
+            </v-chip>
+          </v-btn>
         </template>
         <v-list>
           <v-list-item>
@@ -134,7 +122,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">User Profile</span>
+                <span class="headline">User Login</span>
               </v-card-title>
               <v-card-text>
                 <v-container>
@@ -192,7 +180,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">User Profile</span>
+                <span class="headline">User Registration</span>
               </v-card-title>
               <v-card-text>
                 <v-container>

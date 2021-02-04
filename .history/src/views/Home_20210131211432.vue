@@ -1,9 +1,11 @@
 <template>
   <div class="home">
-    <CourselWithMenu />
+    <CourselWithMenu 
+    <v-card>
+      </v-card>
+    />
     <FeaturedCategories />
-    <FeaturedSales />
-    <Cart />
+    <FeaturedSales />:
   </div>
 </template>
 
@@ -11,16 +13,20 @@
 import CourselWithMenu from '@/components/CarouselWithMenu'
 import FeaturedCategories from '@/components/FeaturedCategories'
 import FeaturedSales from '@/components/FeaturedSales'
-import Cart from '@/components/Cart'
 // @ is an alias to /src
 
 export default {
   name: 'Home',
+  data: () => ({
+    product: ''
+  }),
+  mounted () {
+    this.product = this.$store.getters.getCurrentProduct
+  },
   components: {
     CourselWithMenu,
     FeaturedCategories,
-    FeaturedSales,
-    Cart
+    FeaturedSales
   }
 }
 </script>

@@ -9,12 +9,7 @@
     class="ml-5 mr-5"
   >
     <v-toolbar-title>
-      <v-btn
-        text
-        rounded
-        to="/"
-        color="transparent"
-      >
+      <v-btn text rounded to="/" color="transparent">
         <v-img
           src="../assets/demologo.png"
           height="60"
@@ -22,17 +17,11 @@
           width="60"
           class="mr-5"
         />
-        <div :class="appBarContentColor">
-          Ecommerce
-        </div>
+        <div :class="appBarContentColor">Ecommerce</div>
       </v-btn>
     </v-toolbar-title>
     <v-spacer class="hidden-xs-and-down" />
-    <v-form
-      method="POST"
-      action="#"
-      class="hidden-xs-and-down"
-    >
+    <v-form method="POST" action="#" class="hidden-xs-and-down">
       <v-text-field
         filled
         rounded
@@ -45,10 +34,7 @@
         class="ma-5"
       />
     </v-form>
-    <div
-      id="nav"
-      class="hidden-xs-and-down"
-    >
+    <div id="nav" class="hidden-xs-and-down">
       <v-btn
         text
         rounded
@@ -62,37 +48,23 @@
       </v-btn>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
-          <v-chip
-            class="ma-2"
-            outlined
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon class="mr-2">
-              mdi-cart
-            </v-icon>
-            {{ produtQuantity }}
-            Cart
-          </v-chip>
-        </template>
+          <v-btn color="primary" v-bind="attrs" v-on="on">From the top</v-btn>
+        </template></v-menu
+      >
+    </div></v-app-bar
+  >
+</template>
         <template v-slot:default="dialog">
-          <v-card>
-            <v-card-text>
-              <div class="text-h2 pa-12">
-                Hello world!
-              </div>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn
-                scrollable
-                text
-                @click="dialog.value = false"
-              >
-                Close
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
+  <v-card>
+    <v-toolbar color="primary" dark>Opening from the top</v-toolbar>
+    <v-card-text>
+      <div class="text-h2 pa-12">Hello world!</div>
+    </v-card-text>
+    <v-card-actions class="justify-end">
+      <v-btn text @click="dialog.value = false">Close</v-btn>
+    </v-card-actions>
+  </v-card>
+</template>
         <v-list>
           <v-list-item>
             <v-list-item-title>No Items on the cart.</v-list-item-title>
@@ -104,18 +76,11 @@
     <div class="hidden-xs-and-down mr-5">
       <v-menu offset-y>
         <template v-slot:activator="{ attrs, on }">
-          <v-btn
-            text
-            rounded
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon>
-              mdi-account
-            </v-icon>
-            Account
-          </v-btn>
-        </template>
+  <v-btn text rounded v-bind="attrs" v-on="on">
+    <v-icon> mdi-account </v-icon>
+    Account
+  </v-btn>
+</template>
         <v-list>
           <v-dialog
             v-model="loginDialog"
@@ -242,27 +207,27 @@
 <script>
 export default {
   name: 'AppBar',
-  data () {
+  data() {
     return {
       routes: [
         { name: 'About', link: '/about' },
         { name: 'Deals', link: '/deals' },
         { name: 'TOA', link: '/terms-and-conditions' },
-        { name: 'Stores', link: '/stores' }
+        { name: 'Stores', link: '/stores' },
       ],
       appBarcolor: 'transparent',
       dark: false,
       appBarContentColor: 'blue--text',
       produtQuantity: 0,
       loginDialog: false,
-      registerDialog: false
+      registerDialog: false,
     }
   },
   methods: {
-    searchButton () {
+    searchButton() {
       console.log('clicked')
     },
-    changeColorOnScroll (e) {
+    changeColorOnScroll(e) {
       if (typeof window === 'undefined') return
       const top = window.pageYOffset || e.target.scrollTop || 0
       if (top > 20) {
@@ -274,8 +239,8 @@ export default {
         this.appBarContentColor = 'blue--text'
         this.dark = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -60,47 +60,42 @@
           {{ link.name }}
         </div>
       </v-btn>
-      <v-menu offset-y>
+      <v-dialog
+        v-model="dialog"
+        scrollable
+        max-width="300px"
+      >
         <template v-slot:activator="{ on, attrs }">
-          <v-chip
-            class="ma-2"
-            outlined
+          <v-btn
+            color="primary"
+            dark
             v-bind="attrs"
             v-on="on"
           >
-            <v-icon class="mr-2">
-              mdi-cart
-            </v-icon>
-            {{ produtQuantity }}
             Cart
-          </v-chip>
+          </v-btn>
         </template>
         <template v-slot:default="dialog">
-          <v-card>
-            <v-card-text>
-              <div class="text-h2 pa-12">
-                Hello world!
-              </div>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn
-                scrollable
-                text
-                @click="dialog.value = false"
-              >
-                Close
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-list-item-title>No Items on the cart.</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </div>
-    <v-spacer />
+            <v-card>
+              <v-toolbar
+                color="primary"
+                dark
+              >Opening from the top</v-toolbar>
+              <v-card-text>
+                <div class="text-h2 pa-12">Hello world!</div>
+              </v-card-text>
+              <v-card-actions class="justify-end">
+                <v-btn
+                  text
+                  @click="dialog.value = false"
+                >Close</v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+      </v-card>
+      </v-dialog>
+  </div>
+  <v-spacer />
     <div class="hidden-xs-and-down mr-5">
       <v-menu offset-y>
         <template v-slot:activator="{ attrs, on }">
@@ -242,27 +237,27 @@
 <script>
 export default {
   name: 'AppBar',
-  data () {
+  data() {
     return {
       routes: [
         { name: 'About', link: '/about' },
         { name: 'Deals', link: '/deals' },
         { name: 'TOA', link: '/terms-and-conditions' },
-        { name: 'Stores', link: '/stores' }
+        { name: 'Stores', link: '/stores' },
       ],
       appBarcolor: 'transparent',
       dark: false,
       appBarContentColor: 'blue--text',
       produtQuantity: 0,
       loginDialog: false,
-      registerDialog: false
+      registerDialog: false,
     }
   },
   methods: {
-    searchButton () {
+    searchButton() {
       console.log('clicked')
     },
-    changeColorOnScroll (e) {
+    changeColorOnScroll(e) {
       if (typeof window === 'undefined') return
       const top = window.pageYOffset || e.target.scrollTop || 0
       if (top > 20) {
@@ -274,8 +269,8 @@ export default {
         this.appBarContentColor = 'blue--text'
         this.dark = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

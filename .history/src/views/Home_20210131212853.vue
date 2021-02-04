@@ -2,8 +2,7 @@
   <div class="home">
     <CourselWithMenu />
     <FeaturedCategories />
-    <FeaturedSales />
-    <Cart />
+    <FeaturedSales />:
   </div>
 </template>
 
@@ -11,7 +10,8 @@
 import CourselWithMenu from '@/components/CarouselWithMenu'
 import FeaturedCategories from '@/components/FeaturedCategories'
 import FeaturedSales from '@/components/FeaturedSales'
-import Cart from '@/components/Cart'
+import productList from '@/components/CategorySlider'
+import 
 // @ is an alias to /src
 
 export default {
@@ -20,7 +20,7 @@ export default {
     CourselWithMenu,
     FeaturedCategories,
     FeaturedSales,
-    Cart
+    productList,
   }
 }
 </script>

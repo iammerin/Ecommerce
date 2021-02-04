@@ -11,6 +11,7 @@
 import CourselWithMenu from '@/components/CarouselWithMenu'
 import FeaturedCategories from '@/components/FeaturedCategories'
 import FeaturedSales from '@/components/FeaturedSales'
+import productList from '@/components/CategorySlider'
 import Cart from '@/components/Cart'
 // @ is an alias to /src
 
@@ -20,7 +21,8 @@ export default {
     CourselWithMenu,
     FeaturedCategories,
     FeaturedSales,
-    Cart
+    productList,
+    Cart,
   }
 }
 </script>

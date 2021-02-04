@@ -62,36 +62,28 @@
       </v-btn>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
-          <v-chip
-            class="ma-2"
-            outlined
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon class="mr-2">
-              mdi-cart
-            </v-icon>
-            {{ produtQuantity }}
-            Cart
-          </v-chip>
-        </template>
+<v-btn
+    color="primary"
+    v-bind="attrs"
+    v-on="on"
+>From the top</v-btn>
+</template>
         <template v-slot:default="dialog">
-          <v-card>
+        <v-card>
+            <v-toolbar
+            color="primary"
+            dark
+            >Opening from the top</v-toolbar>
             <v-card-text>
-              <div class="text-h2 pa-12">
-                Hello world!
-              </div>
+            <div class="text-h2 pa-12">Hello world!</div>
             </v-card-text>
             <v-card-actions class="justify-end">
-              <v-btn
-                scrollable
+            <v-btn
                 text
                 @click="dialog.value = false"
-              >
-                Close
-              </v-btn>
+            >Close</v-btn>
             </v-card-actions>
-          </v-card>
+        </v-card>
         </template>
         <v-list>
           <v-list-item>

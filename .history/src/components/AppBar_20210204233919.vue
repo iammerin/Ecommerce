@@ -61,46 +61,44 @@
         </div>
       </v-btn>
       <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-chip
-            class="ma-2"
-            outlined
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon class="mr-2">
-              mdi-cart
-            </v-icon>
-            {{ produtQuantity }}
-            Cart
-          </v-chip>
-        </template>
-        <template v-slot:default="dialog">
-          <v-card>
-            <v-card-text>
-              <div class="text-h2 pa-12">
-                Hello world!
-              </div>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn
-                scrollable
-                text
-                @click="dialog.value = false"
-              >
-                Close
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-list-item-title>No Items on the cart.</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </div>
-    <v-spacer />
+      <template v-slot:activator="{ on, attrs }">
+        <v-chip
+              class="ma-2"
+              outlined
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon class="mr-2">
+                mdi-cart
+              </v-icon>
+              {{ produtQuantity }}
+              Cart
+            </v-chip>
+      </template>
+      <template v-slot:default="dialog">
+        <v-card>
+          <v-toolbar
+          color="transparant"
+          >Cart List</v-toolbar>
+          <v-card-text>
+          <div class="text-h2 pa-12">Hello world!</div>
+          </v-card-text>
+          <v-card-actions class="justify-end">
+          <v-btn
+              text
+              @click="dialog.value = false"
+          >Close</v-btn>
+          </v-card-actions>
+        </v-card>
+      </template>
+      <v-list>
+        <v-list-item>
+          <v-list-item-title>No Items on the cart.</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+  </div>
+  <v-spacer />
     <div class="hidden-xs-and-down mr-5">
       <v-menu offset-y>
         <template v-slot:activator="{ attrs, on }">

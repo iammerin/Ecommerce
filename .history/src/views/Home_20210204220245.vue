@@ -20,7 +20,7 @@ export default {
     CourselWithMenu,
     FeaturedCategories,
     FeaturedSales,
-    Cart
+    Cart,
   }
 }
 </script>
