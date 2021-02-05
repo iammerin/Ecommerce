@@ -120,7 +120,7 @@
           <v-dialog
             v-model="loginDialog"
             persistent
-            max-width="600px"
+            max-width="400px"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-list-item>
@@ -132,7 +132,10 @@
                 </v-list-item-title>
               </v-list-item>
             </template>
-            <v-card>
+            <v-card
+              width="400"
+              opacity="10"
+            >
               <v-card-title>
                 <span class="headline">User Profile</span>
               </v-card-title>

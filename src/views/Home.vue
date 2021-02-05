@@ -3,7 +3,8 @@
     <CourselWithMenu />
     <FeaturedCategories />
     <FeaturedSales />
-    <Cart />
+    <FeaturedSales />
+    <FeaturedSales />
   </div>
 </template>
 
