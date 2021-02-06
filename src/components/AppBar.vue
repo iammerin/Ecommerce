@@ -1,12 +1,13 @@
 <template>
   <v-app-bar
-    max-height="70"
+    max-height="75"
     :color="appBarcolor"
     app
     v-scroll="changeColorOnScroll"
     elevate-on-scroll
     :dark="dark"
     class="ml-5 mr-5"
+    height="70"
   >
     <v-toolbar-title>
       <v-btn
@@ -14,12 +15,13 @@
         rounded
         to="/"
         color="transparent"
+        height="70"
       >
         <v-img
-          src="../assets/demologo.png"
-          height="60"
+          src="../assets/logo.png"
           contain
-          width="60"
+          width="110"
+          height="70"
           class="mr-5"
         />
         <div :class="appBarContentColor">
