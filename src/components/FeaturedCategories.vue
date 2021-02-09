@@ -11,6 +11,9 @@
     >
       <v-col
         cols="2"
+        md="2"
+        sm="6"
+        xs="6"
         v-for="(featured, index) in categories"
         :key="index"
       >
@@ -24,6 +27,7 @@
               :src="featured.image"
               :lazy-src="featured.image"
               class="ma-0 fill-height"
+              height="100"
             >
               <template v-slot:placeholder>
                 <v-row
@@ -52,17 +56,20 @@
       </v-col>
     </v-col>
     <v-col
-      cols="10"
-      v-if="!checkMobileDesktop"
+      cols="12"
+      v-else
+      class="ma-auto"
     >
       <v-col
-        cols="12"
+        cols="2"
+        md="2"
+        sm="6"
+        xs="6"
         v-for="(featured, index) in categories"
         :key="index"
       >
         <v-card
           class="slide"
-          height="180"
           :to="featured.link"
         >
           <v-card-text>
