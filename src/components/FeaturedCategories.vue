@@ -12,8 +12,6 @@
       <v-col
         cols="2"
         md="2"
-        sm="6"
-        xs="6"
         v-for="(featured, index) in categories"
         :key="index"
       >
@@ -58,19 +56,20 @@
     <v-col
       cols="12"
       v-else
-      class="ma-auto"
+      class="ma-auto d-flex"
     >
       <v-col
-        cols="2"
+        cols="6"
         md="2"
-        sm="6"
-        xs="6"
+        sm="4"
+        lg="2"
         v-for="(featured, index) in categories"
         :key="index"
       >
         <v-card
           class="slide"
           :to="featured.link"
+          v-if="index < 2"
         >
           <v-card-text>
             <v-img

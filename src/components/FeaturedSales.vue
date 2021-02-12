@@ -66,6 +66,57 @@
           </v-col>
         </v-row>
       </v-card>
+      <v-card
+        elevation="1"
+        class="mt-2 pa-0"
+        v-else
+      >
+        <v-row no-gutters>
+          <v-col cols="12">
+            <v-card flat>
+              <v-card-text class="text-h6">
+                On Sale Now
+                <v-chip
+                  class="ma-2"
+                  color="red"
+                  text-color="white"
+                >
+                  {{ time }}
+                </v-chip>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row class="text-left mt-0 mb-5">
+          <v-col cols="12">
+            <v-card
+              flat
+              class="text-h6"
+            >
+              <v-card-text
+                class="text-h6"
+              >
+                <v-btn
+                  text
+                  to="flashSale"
+                  :class="flashSalesClasses"
+                  @mouseover="hoverOver"
+                  @mouseout="hoverOut"
+                  id="animateButton"
+                  height="60"
+                >
+                  <div id="btn">
+                    <span class="noselect">
+                      Show More
+                    </span>
+                    <div id="circle" />
+                  </div>
+                </v-btn>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-card>
       <v-row class="mt-2 mb-10">
         <v-carousel
           hide-delimiters
@@ -129,11 +180,13 @@
                             class="mr-5"
                           >
                             <v-img
-                              :src="images.url"
-                              :lazy-src="images.url"
+                              :src="images.image"
+                              :lazy-src="images.image"
                               :alt="images.alt"
                               class="fill-height"
                               height="300"
+                              width="250"
+                              contain
                             >
                               <template v-slot:placeholder>
                                 <v-row
@@ -207,6 +260,7 @@
 </template>
 
 <script>
+import store from '../store/index'
 export default {
   name: 'FeaturedSales',
   data () {
@@ -221,81 +275,7 @@ export default {
       ],
       time: 0,
       flashSalesClasses: ['text-h4', 'text-capitalize'],
-      deadline: new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000),
-      salesProduct: [
-        {
-          name: 'T-Shirt',
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'T-Shirt',
-          price: 240,
-          discount: '40%',
-          old_price: 600,
-          description: 'T-Shirt available for just Rs. 400.'
-        },
-        {
-          name: 'Biniki',
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'Bikini',
-          price: 240,
-          discount: '40%',
-          old_price: 600,
-          description: 'Hot Bikini on Sale.'
-        },
-        {
-          name: 'T-Shirt',
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'T-Shirt',
-          price: 240,
-          discount: '40%',
-          old_price: 600,
-          description: 'T-Shirt available for just Rs. 400.'
-        },
-        {
-          name: 'Biniki',
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'Bikini',
-          price: 240,
-          discount: '40%',
-          old_price: 600,
-          description: 'Hot Bikini on Sale.'
-        },
-        {
-          name: 'T-Shirt',
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'T-Shirt',
-          price: 240,
-          discount: '40%',
-          old_price: 600,
-          description: 'T-Shirt available for just Rs. 400.'
-        },
-        {
-          name: 'Biniki',
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'Bikini',
-          price: 240,
-          discount: '40%',
-          old_price: 600,
-          description: 'Hot Bikini on Sale.'
-        },
-        {
-          name: 'T-Shirt',
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'T-Shirt',
-          price: 240,
-          discount: '40%',
-          old_price: 600,
-          description: 'T-Shirt available for just Rs. 400.'
-        },
-        {
-          name: 'Biniki',
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'Bikini',
-          price: 240,
-          discount: '40%',
-          old_price: 600,
-          description: 'Hot Bikini on Sale.'
-        }
-      ]
+      deadline: new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000)
     }
   },
   methods: {
@@ -336,6 +316,10 @@ export default {
     this.initializeClock()
   },
   computed: {
+    salesProduct () {
+      console.log(store.state.featuredSales)
+      return store.state.featuredSales
+    },
     columns () {
       if (this.$vuetify.breakpoint.xl) {
         return 4

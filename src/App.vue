@@ -15,6 +15,7 @@
       fill-height
       fluid
       v-else
+      width="100vw"
     >
       <v-row
         align="center"
@@ -39,6 +40,7 @@
 <script>
 import AppBar from './components/AppBar'
 import { SpringSpinner } from 'epic-spinners'
+import store from './store/index.js'
 
 export default {
   name: 'App',
@@ -60,6 +62,17 @@ export default {
     this.$router.afterEach(() => {
       setTimeout(() => { this.loading = false }, 0.5 * 1000)
     })
+  },
+  mounted () {
+    const currentCursor = this
+    currentCursor.loading = true
+    store
+      .dispatch('fetchProducts')
+      .then(() => (currentCursor.loading = false))
+      .catch((error) => {
+        console.log(error)
+        currentCursor.isError = true
+      })
   }
 }
 </script>
