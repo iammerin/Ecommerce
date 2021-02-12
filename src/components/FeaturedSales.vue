@@ -228,8 +228,8 @@
                                           style="color: red!important"
                                           title="Discount"
                                         >
-                                          Rs. <strike>{{ images.old_price }}</strike> - {{ images.discount }}
-                                          = Rs. {{ images.price }}
+                                          Rs. <strike>{{ images.old_price }}</strike> - {{ images.product_discount }}
+                                          = Rs. {{ images.product_price }}
                                         </h5>
                                       </v-col>
                                     </v-row>
@@ -265,14 +265,6 @@ export default {
   name: 'FeaturedSales',
   data () {
     return {
-      salesImages: [
-        {
-          url: 'https://picsum.photos//500/300?random=11',
-          alt: 'Product name'
-        },
-        { url: 'https://picsum.photos/500/300?random=12', alt: 'Product name' },
-        { url: 'https://picsum.photos/500/300?random=13', alt: 'Product name' }
-      ],
       time: 0,
       flashSalesClasses: ['text-h4', 'text-capitalize'],
       deadline: new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000)
@@ -317,8 +309,18 @@ export default {
   },
   computed: {
     salesProduct () {
+      const tempData = [
+        {
+          name: 'try1',
+          image: 'dfad'
+        },
+        {
+          name: 'try2',
+          image: 'fadfdsfad'
+        }
+      ]
       console.log(store.state.featuredSales)
-      return store.state.featuredSales
+      return tempData
     },
     columns () {
       if (this.$vuetify.breakpoint.xl) {
