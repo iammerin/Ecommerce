@@ -67,79 +67,140 @@
         </v-row>
       </v-card>
       <v-row class="mt-2 mb-10">
-        <v-col
-          v-for="(images, index) in salesProduct"
-          :key="index"
-          sm="12"
-          xs="12"
-          md="4"
+        <v-carousel
+          hide-delimiters
+          light
+          cycle
         >
-          <v-card
-            class="mr-5"
-          >
-            <v-img
-              :src="images.url"
-              :lazy-src="images.url"
-              :alt="images.alt"
-              class="fill-height"
-              height="300"
+          <template v-slot:prev="{ on, attrs }">
+            <v-btn
+              color="primary white--text"
+              small
+              v-bind="attrs"
+              v-on="on"
             >
-              <template v-slot:placeholder>
-                <v-row
-                  class="fill-height ma-0"
-                  align="center"
-                  justify="center"
-                >
-                  <v-progress-circular
-                    indeterminate
-                    color="primary"
-                  />
-                </v-row>
-              </template>
-            </v-img>
-            <v-card-text>
-              <v-container
-                class="productDetails"
-                style="width: 100%!important;"
+              <v-icon>
+                mdi-arrow-left-bold-circle-outline
+              </v-icon>
+            </v-btn>
+          </template>
+          <template v-slot:next="{ on, attrs }">
+            <v-btn
+              color="primary white--text"
+              small
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon>
+                mdi-arrow-right-bold-circle-outline
+              </v-icon>
+            </v-btn>
+          </template>
+          <template
+            v-for="(images, index) in salesProduct"
+            class="whiteThis"
+          >
+            <v-carousel-item
+              v-if="(index + 1) % columns === 1 || columns === 1"
+              :key="index"
+            >
+              <v-row
+                class="flex-nowrap"
+                style="height: 100%"
               >
-                <div
-                  class="productDetailsCard"
-                  style="width: 100%!important"
+                <template
+                  v-for="(n,i) in columns"
                 >
-                  <div
-                    class="productCardContent"
-                    style="width: 100%!important"
+                  <template
+                    v-if="(+index + i) < salesProduct.length"
                   >
-                    <v-row class="d-flex">
-                      <v-col cols="6">
-                        <h3
-                          v-text="images.name"
-                          :title="images.name"
-                        />
-                      </v-col>
-                      <v-col cols="6">
-                        <h5
-                          style="color: red!important"
-                          title="Discount"
+                    <v-col :key="i">
+                      <v-sheet
+                        v-if="(+index + i) < salesProduct.length"
+                        color="white"
+                        height="100%"
+                      >
+                        <v-row
+                          class="fill-height"
+                          align="center"
+                          justify="center"
                         >
-                          Rs. <strike>{{ images.old_price }}</strike> - {{ images.discount }}
-                          = Rs. {{ images.price }}
-                        </h5>
-                      </v-col>
-                    </v-row>
-                    <v-row class="d-flex">
-                      <v-col cols="12">
-                        <div class="productDetailsCard_hover_content">
-                          <p v-text="images.description" />
-                        </div>
-                      </v-col>
-                    </v-row>
-                  </div>
-                </div>
-              </v-container>
-            </v-card-text>
-          </v-card>
-        </v-col>
+                          <v-card
+                            class="mr-5"
+                          >
+                            <v-img
+                              :src="images.url"
+                              :lazy-src="images.url"
+                              :alt="images.alt"
+                              class="fill-height"
+                              height="300"
+                            >
+                              <template v-slot:placeholder>
+                                <v-row
+                                  class="fill-height ma-0"
+                                  align="center"
+                                  justify="center"
+                                >
+                                  <v-progress-circular
+                                    indeterminate
+                                    color="primary"
+                                  />
+                                </v-row>
+                              </template>
+                            </v-img>
+                            <v-card-text>
+                              <v-container
+                                class="productDetails"
+                                style="width: 100%!important;"
+                                color="transparent"
+                              >
+                                <div
+                                  class="productDetailsCard"
+                                  style="width: 100%!important"
+                                  color="transparent"
+                                >
+                                  <div
+                                    class="productCardContent"
+                                    style="width: 100%!important"
+                                  >
+                                    <v-row class="d-flex">
+                                      <v-col cols="6">
+                                        <h3
+                                          v-text="images.name"
+                                          :title="images.name"
+                                        />
+                                      </v-col>
+                                      <v-col cols="6">
+                                        <h5
+                                          style="color: red!important"
+                                          title="Discount"
+                                        >
+                                          Rs. <strike>{{ images.old_price }}</strike> - {{ images.discount }}
+                                          = Rs. {{ images.price }}
+                                        </h5>
+                                      </v-col>
+                                    </v-row>
+                                    <v-row class="d-flex">
+                                      <v-col cols="12">
+                                        <div class="productDetailsCard_hover_content">
+                                          <p v-text="images.description" />
+                                        </div>
+                                      </v-col>
+                                    </v-row>
+                                  </div>
+                                </div>
+                              </v-container>
+                            </v-card-text>
+                          </v-card>
+                        </v-row>
+                      </v-sheet>
+                    </v-col>
+                  </template>
+                </template>
+              </v-row>
+            </v-carousel-item>
+          </template>
+        </v-carousel>
       </v-row>
     </v-col>
   </v-row>
@@ -162,6 +223,60 @@ export default {
       flashSalesClasses: ['text-h4', 'text-capitalize'],
       deadline: new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000),
       salesProduct: [
+        {
+          name: 'T-Shirt',
+          url: 'https://picsum.photos//500/300?random=11',
+          alt: 'T-Shirt',
+          price: 240,
+          discount: '40%',
+          old_price: 600,
+          description: 'T-Shirt available for just Rs. 400.'
+        },
+        {
+          name: 'Biniki',
+          url: 'https://picsum.photos//500/300?random=11',
+          alt: 'Bikini',
+          price: 240,
+          discount: '40%',
+          old_price: 600,
+          description: 'Hot Bikini on Sale.'
+        },
+        {
+          name: 'T-Shirt',
+          url: 'https://picsum.photos//500/300?random=11',
+          alt: 'T-Shirt',
+          price: 240,
+          discount: '40%',
+          old_price: 600,
+          description: 'T-Shirt available for just Rs. 400.'
+        },
+        {
+          name: 'Biniki',
+          url: 'https://picsum.photos//500/300?random=11',
+          alt: 'Bikini',
+          price: 240,
+          discount: '40%',
+          old_price: 600,
+          description: 'Hot Bikini on Sale.'
+        },
+        {
+          name: 'T-Shirt',
+          url: 'https://picsum.photos//500/300?random=11',
+          alt: 'T-Shirt',
+          price: 240,
+          discount: '40%',
+          old_price: 600,
+          description: 'T-Shirt available for just Rs. 400.'
+        },
+        {
+          name: 'Biniki',
+          url: 'https://picsum.photos//500/300?random=11',
+          alt: 'Bikini',
+          price: 240,
+          discount: '40%',
+          old_price: 600,
+          description: 'Hot Bikini on Sale.'
+        },
         {
           name: 'T-Shirt',
           url: 'https://picsum.photos//500/300?random=11',
@@ -221,6 +336,18 @@ export default {
     this.initializeClock()
   },
   computed: {
+    columns () {
+      if (this.$vuetify.breakpoint.xl) {
+        return 4
+      }
+      if (this.$vuetify.breakpoint.lg) {
+        return 3
+      }
+      if (this.$vuetify.breakpoint.md) {
+        return 2
+      }
+      return 1
+    },
     checkMobileDesktop () {
       console.log(this.$vuetify.breakpoint.name)
       if (
@@ -245,6 +372,9 @@ export default {
   align-items: center;
   justify-content: center;
 }
+.whiteThis {
+  background-color: white!important;
+}
 
 .productDetailsCard {
   position: relative;
@@ -252,7 +382,7 @@ export default {
   justify-content: center;
   cursor: pointer;
   padding: 2em;
-  background: #FFF;
+  background: white;
   transition: all .35s ease;
   &::before, &::after {
     content: "";
@@ -326,7 +456,7 @@ export default {
   min-width: 150px;
   border: none;
   border-radius: 10px;
-  color: #eee;
+  color: black;
   font-size: 40px;
   font-family: 'Cookie', cursive;
   position: relative;
@@ -366,13 +496,14 @@ export default {
 
 #btn:hover #circle {
   height: 50px;
-  width: 150px;
+  width: 100%;
   left: 0;
   border-radius: 0;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid black;
 }
 #animateButton{
-  background-color: #1976D2;
-  background-image: linear-gradient(315deg, #1976D2 0%, #000000 74%);
+  /* background-color: #1976D2; */
+  background-color: white;
+  /* background-image: linear-gradient(315deg, #1976D2 0%, #000000 74%); */
 }
 </style>

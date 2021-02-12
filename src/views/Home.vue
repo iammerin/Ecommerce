@@ -4,7 +4,6 @@
     <FeaturedCategories />
     <FeaturedSales />
     <FeaturedSales />
-    <FeaturedSales />
   </div>
 </template>
 
