@@ -6,11 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    cart: [
-      {
-        title: 'Dummy cart'
-      }
-    ],
+    cart: [],
     products: [],
     totalPrice: '',
     featuredSales: [],
@@ -33,11 +29,11 @@ export default new Vuex.Store({
       })
     },
     addQuantity (state, product) {
-      product.quantity += 0.5
+      product.quantity++
     },
     subtractQuantity (state, product) {
-      if (product.quantity > 0.5) {
-        product.quantity -= 0.5
+      if (product.quantity > 1) {
+        product.quantity--
       } else {
         let yeha = ''
         state.cart.filter(function (item, index) {
@@ -58,7 +54,7 @@ export default new Vuex.Store({
   actions: {
     fetchProducts ({ commit }) {
       return new Promise((resolve, reject) => {
-        axios('http://192.168.100.11:8001/api/v1/home/').then(
+        axios('http://192.168.100.11:8000/api/v1/home/').then(
           (response) => {
             commit('setAll', response.data)
             resolve()
@@ -66,8 +62,21 @@ export default new Vuex.Store({
         )
       })
     },
-    addProductsToCart () {
-      //
+    addProductsToCart (context, product) {
+      const existingProduct = context.state.cart.filter(
+        function (item) {
+          if (item.product.id === Number(product.id)) {
+            return true
+          } else {
+            return false
+          }
+        }
+      )
+      if (existingProduct.length) {
+        context.commit('incrementItemQuantity', product)
+      } else {
+        context.commit('pushToCart', product)
+      }
     },
     getTotalOfCart () {
     }

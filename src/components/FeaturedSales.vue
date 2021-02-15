@@ -260,7 +260,6 @@
 </template>
 
 <script>
-import store from '../store/index'
 export default {
   name: 'FeaturedSales',
   data () {
@@ -319,7 +318,6 @@ export default {
           image: 'fadfdsfad'
         }
       ]
-      console.log(store.state.featuredSales)
       return tempData
     },
     columns () {
@@ -335,7 +333,6 @@ export default {
       return 1
     },
     checkMobileDesktop () {
-      console.log(this.$vuetify.breakpoint.name)
       if (
         this.$vuetify.breakpoint.name === 'xs' ||
         this.$vuetify.breakpoint.name === 'sm'

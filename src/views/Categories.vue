@@ -1,27 +1,29 @@
 <template>
   <v-row
-    align="center"
-    justify="center"
+    max-width="100vw"
   >
     <v-col
       cols="12"
       md="3"
-      sm="3"
+      sm="12"
       lg="3"
+      class="ml-2"
     >
       <VerticalCategoriesList />
     </v-col>
     <v-col>
-      Here all Products.
+      <AllProducts />
     </v-col>
   </v-row>
 </template>
 
 <script>
 import VerticalCategoriesList from '@/components/VerticalCategoriesList'
+import AllProducts from '@/components/AllProducts'
 export default {
   components: {
-    VerticalCategoriesList
+    VerticalCategoriesList,
+    AllProducts
   }
 }
 </script>

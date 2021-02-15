@@ -3,7 +3,6 @@
     <CourselWithMenu />
     <FeaturedCategories />
     <FeaturedSales />
-    <FeaturedSales />
   </div>
 </template>
 

@@ -164,12 +164,45 @@
           subheader
         >
           <v-subheader>All Products on cart</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Product title</v-list-item-title>
-              <v-list-item-subtitle>product quantity</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+          <div
+            v-for="(product, index) in cart"
+            :key="index"
+          >
+            <v-list-item
+              v-if="checkQuantity(product)"
+            >
+              <v-row>
+                <v-col cols="10">
+                  <v-list-item-content>
+                    <v-list-item-title>{{ product.product.title }}</v-list-item-title>
+                    <v-list-item-subtitle>
+                      Quantity:
+                      <v-chip
+                        class="primary white--text ml-2 mr-2"
+                        small
+                        style="cursor: pointer;"
+                        @click="addQuantity(product)"
+                      >
+                        <h2>+</h2>
+                      </v-chip>
+                      {{ product.quantity }}
+                      <v-chip
+                        class="ml-2 primary white--text"
+                        small
+                        style="cursor: pointer;"
+                        @click="subtractQuantity(product)"
+                      >
+                        <h2>-</h2>
+                      </v-chip>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-col>
+                <v-col cols="2">
+                  Rs. {{ price(product.product.price, product.quantity) }}
+                </v-col>
+              </v-row>
+            </v-list-item>
+          </div>
         </v-list>
         <v-divider />
       </v-card>
@@ -561,7 +594,6 @@ export default {
   },
   methods: {
     searchButton () {
-      console.log('clicked')
     },
     changeColorOnScroll (e) {
       if (typeof window === 'undefined') return
@@ -575,11 +607,23 @@ export default {
         this.appBarContentColor = 'blue--text'
         this.dark = false
       }
+    },
+    addQuantity (product) {
+      this.$store.commit('addQuantity', product)
+    },
+    subtractQuantity (product) {
+      this.$store.commit('subtractQuantity', product)
+    },
+    checkQuantity (product) {
+      if (product.quantity > 0) { return true } else { return false }
+    },
+    price (actualprice, quantity) {
+      return actualprice * quantity
     }
   },
   computed: {
     cart () {
-      return store.state.cart
+      return this.$store.state.cart
     },
     productQuantity () {
       return store.state.cart.length
