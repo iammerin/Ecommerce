@@ -8,11 +8,14 @@ export default new Vuex.Store({
   state: {
     cart: [],
     products: [],
-    totalPrice: '',
     featuredSales: [],
-    categories: []
+    categories: [],
+    totalPrice: 0
   },
   mutations: {
+    total (state, totalPrice) {
+      state.totalPrice = totalPrice
+    },
     setAll (state, all) {
       state.featuredSales = all.details[0].sliders
       state.categories = all.details[0].category
@@ -46,9 +49,6 @@ export default new Vuex.Store({
         })
         state.cart.splice(yeha, 1)
       }
-    },
-    total (state, totalPrice) {
-      state.totalPrice = totalPrice
     }
   },
   actions: {
@@ -78,7 +78,15 @@ export default new Vuex.Store({
         context.commit('pushToCart', product)
       }
     },
-    getTotalOfCart () {
+    getTotalOfCart (context) {
+      let total = 0
+      let item
+      for (item in context.state.cart) {
+        total +=
+          context.state.cart[item].quantity *
+          context.state.cart[item].product.price
+      }
+      context.commit('total', total)
     }
   },
   modules: {

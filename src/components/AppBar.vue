@@ -53,7 +53,7 @@
         </div>
       </v-btn>
     </v-toolbar-title>
-    <v-spacer v-if="checkMobileDesktop" />
+    <v-spacer />
     <v-form
       method="POST"
       action="#"
@@ -81,6 +81,7 @@
         v-for="link in routes"
         :key="link.name"
         :to="link.link"
+        small
       >
         <div :class="appBarContentColor">
           {{ link.name }}
@@ -137,75 +138,7 @@
           Cart
         </v-chip>
       </template>
-      <v-card>
-        <v-toolbar
-          dark
-          color="primary"
-        >
-          <v-toolbar-title>
-            <v-icon class="mr-2">
-              mdi-cart-outline
-            </v-icon>
-            Cart
-          </v-toolbar-title>
-          <v-spacer />
-          <v-toolbar-items>
-            <v-btn
-              icon
-              dark
-              @click="cartDialog = false"
-            >
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-list
-          three-line
-          subheader
-        >
-          <v-subheader>All Products on cart</v-subheader>
-          <div
-            v-for="(product, index) in cart"
-            :key="index"
-          >
-            <v-list-item
-              v-if="checkQuantity(product)"
-            >
-              <v-row>
-                <v-col cols="10">
-                  <v-list-item-content>
-                    <v-list-item-title>{{ product.product.title }}</v-list-item-title>
-                    <v-list-item-subtitle>
-                      Quantity:
-                      <v-chip
-                        class="primary white--text ml-2 mr-2"
-                        small
-                        style="cursor: pointer;"
-                        @click="addQuantity(product)"
-                      >
-                        <h2>+</h2>
-                      </v-chip>
-                      {{ product.quantity }}
-                      <v-chip
-                        class="ml-2 primary white--text"
-                        small
-                        style="cursor: pointer;"
-                        @click="subtractQuantity(product)"
-                      >
-                        <h2>-</h2>
-                      </v-chip>
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-col>
-                <v-col cols="2">
-                  Rs. {{ price(product.product.price, product.quantity) }}
-                </v-col>
-              </v-row>
-            </v-list-item>
-          </div>
-        </v-list>
-        <v-divider />
-      </v-card>
+      <Cart @cartDialog="cartDialog = false" />
     </v-dialog>
     <v-spacer v-if="checkMobileDesktop" />
     <div
@@ -242,51 +175,7 @@
                 </v-list-item-title>
               </v-list-item>
             </template>
-            <v-card
-              width="400"
-              opacity="10"
-            >
-              <v-card-title>
-                <span class="headline">User Profile</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-text-field
-                        label="Email*"
-                        required
-                      />
-                    </v-col>
-                    <v-col cols="12">
-                      <v-text-field
-                        label="Password*"
-                        type="password"
-                        required
-                      />
-                    </v-col>
-                  </v-row>
-                </v-container>
-                <small>*indicates required field</small>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="loginDialog = false"
-                >
-                  Close
-                </v-btn>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="loginDialog = false"
-                >
-                  Login
-                </v-btn>
-              </v-card-actions>
-            </v-card>
+            <LoginCard @closeLoginDialog="loginDialog = false" />
           </v-dialog>
           <v-dialog
             v-model="registerDialog"
@@ -303,48 +192,7 @@
                 </v-list-item-title>
               </v-list-item>
             </template>
-            <v-card>
-              <v-card-title>
-                <span class="headline">User Profile</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-text-field
-                        label="Email*"
-                        required
-                      />
-                    </v-col>
-                    <v-col cols="12">
-                      <v-text-field
-                        label="Password*"
-                        type="password"
-                        required
-                      />
-                    </v-col>
-                  </v-row>
-                </v-container>
-                <small>*indicates required field</small>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="registerDialog = false"
-                >
-                  Close
-                </v-btn>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="registerDialog = false"
-                >
-                  Submit
-                </v-btn>
-              </v-card-actions>
-            </v-card>
+            <RegisterCard @closeRegisterDialog="registerDialog = false" />
           </v-dialog>
         </v-list>
       </v-menu>
@@ -407,7 +255,7 @@
           dense
         >
           <v-list-item
-            v-for="(links, index) in routes"
+            v-for="(links, index) in mobileRoutes"
             :key="index"
             link
             :to="links.link"
@@ -420,160 +268,22 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col cols="12">
-            <div>
-              <v-menu offset-y>
-                <template v-slot:activator="{ attrs, on }">
-                  <v-btn
-                    text
-                    rounded
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    <v-icon>
-                      mdi-account
-                    </v-icon>
-                    Account
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-dialog
-                    v-model="loginDialog"
-                    persistent
-                    max-width="400px"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-list-item>
-                        <v-list-item-title
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          Login
-                        </v-list-item-title>
-                      </v-list-item>
-                    </template>
-                    <v-card
-                      width="400"
-                      opacity="10"
-                    >
-                      <v-card-title>
-                        <span class="headline">User Profile</span>
-                      </v-card-title>
-                      <v-card-text>
-                        <v-container>
-                          <v-row>
-                            <v-col cols="12">
-                              <v-text-field
-                                label="Email*"
-                                required
-                              />
-                            </v-col>
-                            <v-col cols="12">
-                              <v-text-field
-                                label="Password*"
-                                type="password"
-                                required
-                              />
-                            </v-col>
-                          </v-row>
-                        </v-container>
-                        <small>*indicates required field</small>
-                      </v-card-text>
-                      <v-card-actions>
-                        <v-spacer />
-                        <v-btn
-                          color="blue darken-1"
-                          text
-                          @click="loginDialog = false"
-                        >
-                          Close
-                        </v-btn>
-                        <v-btn
-                          color="blue darken-1"
-                          text
-                          @click="loginDialog = false"
-                        >
-                          Login
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                  <v-dialog
-                    v-model="registerDialog"
-                    persistent
-                    max-width="600px"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-list-item>
-                        <v-list-item-title
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          Register
-                        </v-list-item-title>
-                      </v-list-item>
-                    </template>
-                    <v-card>
-                      <v-card-title>
-                        <span class="headline">User Profile</span>
-                      </v-card-title>
-                      <v-card-text>
-                        <v-container>
-                          <v-row>
-                            <v-col cols="12">
-                              <v-text-field
-                                label="Email*"
-                                required
-                              />
-                            </v-col>
-                            <v-col cols="12">
-                              <v-text-field
-                                label="Password*"
-                                type="password"
-                                required
-                              />
-                            </v-col>
-                          </v-row>
-                        </v-container>
-                        <small>*indicates required field</small>
-                      </v-card-text>
-                      <v-card-actions>
-                        <v-spacer />
-                        <v-btn
-                          color="blue darken-1"
-                          text
-                          @click="registerDialog = false"
-                        >
-                          Close
-                        </v-btn>
-                        <v-btn
-                          color="blue darken-1"
-                          text
-                          @click="registerDialog = false"
-                        >
-                          Submit
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                </v-list>
-              </v-menu>
-            </div>
-          </v-col>
-        </v-row>
       </v-card>
     </v-dialog>
   </v-app-bar>
 </template>
 
 <script>
-import store from '../store/index'
+import LoginCard from './LoginCard'
+import RegisterCard from './RegisterCard'
+import Cart from '../components/Cart'
 export default {
   name: 'AppBar',
+  components: {
+    Cart,
+    LoginCard,
+    RegisterCard
+  },
   data () {
     return {
       appNavDialog: false,
@@ -584,6 +294,15 @@ export default {
         { name: 'TOA', link: '/terms-and-conditions' },
         { name: 'Stores', link: '/stores' },
         { name: 'Categories', link: '/categories' }
+      ],
+      mobileRoutes: [
+        { name: 'About', link: '/about' },
+        { name: 'Deals', link: '/deals' },
+        { name: 'TOA', link: '/terms-and-conditions' },
+        { name: 'Stores', link: '/stores' },
+        { name: 'Categories', link: '/categories' },
+        { name: 'Login', link: '/login' },
+        { name: 'Register', link: '/register' }
       ],
       appBarcolor: 'transparent',
       dark: false,
@@ -607,18 +326,6 @@ export default {
         this.appBarContentColor = 'blue--text'
         this.dark = false
       }
-    },
-    addQuantity (product) {
-      this.$store.commit('addQuantity', product)
-    },
-    subtractQuantity (product) {
-      this.$store.commit('subtractQuantity', product)
-    },
-    checkQuantity (product) {
-      if (product.quantity > 0) { return true } else { return false }
-    },
-    price (actualprice, quantity) {
-      return actualprice * quantity
     }
   },
   computed: {
@@ -626,7 +333,7 @@ export default {
       return this.$store.state.cart
     },
     productQuantity () {
-      return store.state.cart.length
+      return this.$store.state.cart.length
     },
     checkMobileDesktop () {
       if (

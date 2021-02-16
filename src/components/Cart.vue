@@ -15,7 +15,7 @@
         <v-btn
           icon
           dark
-          @click="cartDialog = false"
+          @click="cartDialogClicked"
         >
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -67,12 +67,46 @@
       </div>
     </v-list>
     <v-divider />
+    <v-card-text class="text-h5 text-right mt-5">
+      Total:
+      <v-chip
+        color="primary"
+        class="ml-2"
+      >
+        Rs. {{ totalPrice }}
+      </v-chip>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    cartDialogClicked () {
+      this.$emit('cartDialog')
+    },
+    subtractQuantity (product) {
+      this.$store.commit('subtractQuantity', product)
+    },
+    price (actualprice, quantity) {
+      return actualprice * quantity
+    },
+    addQuantity (product) {
+      this.$store.commit('addQuantity', product)
+    },
+    checkQuantity (product) {
+      if (product.quantity > 0) { return true } else { return false }
+    }
+  },
+  computed: {
+    cart () {
+      return this.$store.state.cart
+    },
+    totalPrice () {
+      this.$store.dispatch('getTotalOfCart')
+      return this.$store.state.totalPrice
+    }
+  }
 }
 </script>
 
