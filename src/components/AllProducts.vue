@@ -20,9 +20,10 @@
               :elevation="hover ? 16:1"
             >
               <v-img
-                :lazy-src="product.image"
+                :lazy-src="product.lazyimage"
                 :src="product.image"
                 height="200"
+                :width="checkMobileDesktop? 300:'100%' "
                 @click="magnifyClicked(index)"
               >
                 <v-expand-transition>
@@ -143,14 +144,17 @@
       :width="widthOfProductDialog"
       persistent
     >
-      <v-card>
+      <v-card
+        v-for="(product, index) in clickedProduct"
+        :key="index"
+      >
         <v-row
           align="center"
           justify="center"
           class="ma-0"
         >
           <v-card-title class="headline">
-            {{ clickedProductTitle }}
+            {{ product.title }}
           </v-card-title>
         </v-row>
         <v-row
@@ -163,28 +167,31 @@
               elevation="3"
             >
               <v-img
-                :src="clickedProductImage"
-                max-height="60vh"
+                height="60vh"
+                :lazy-src="product.lazyimage"
+                :src="product.image"
+                style="object-fit: contain;"
+                class="fill-height"
               />
             </v-card>
           </v-col>
           <v-col cols="6">
             <v-row>
               <v-card-text>
-                {{ clickedProductDescription }}
+                {{ product.description }}
               </v-card-text>
             </v-row>
             <v-row>
               <v-col cols="12">
                 <div class="subtitle-1 green--text">
-                  Rs. {{ clickedProductPrice }}
+                  Rs. {{ product.price }}
                 </div>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12">
                 <div class="caption">
-                  Rs. <strike>{{ clickedProductOldPrice }}</strike> - {{ clickedProductDiscount }}%
+                  Rs. <strike>{{ product.old_price }}</strike> - {{ product.discount }}%
                 </div>
               </v-col>
             </v-row>
@@ -241,7 +248,8 @@ export default {
       allProducts: [
         {
           id: 1,
-          image: 'https://picsum.photos/200/300?random=1',
+          image: 'https://picsum.photos/3000/2000?random=1',
+          lazyimage: 'https://picsum.photos/200/300?random=1',
           title: 'Title 1',
           price: '900',
           old_price: '1000',
@@ -250,7 +258,8 @@ export default {
         },
         {
           id: 2,
-          image: 'https://picsum.photos/200/300?random=2',
+          image: 'https://picsum.photos/3000/2000?random=2',
+          lazyimage: 'https://picsum.photos/3000/2000?random=2',
           title: 'Title 1',
           price: '900',
           old_price: '1000',
@@ -259,7 +268,8 @@ export default {
         },
         {
           id: 3,
-          image: 'https://picsum.photos/200/300?random=3',
+          image: 'https://picsum.photos/3000/2000?random=3',
+          lazyimage: 'https://picsum.photos/200/300?random=3',
           title: 'Title 1',
           price: '900',
           old_price: '1000',
@@ -268,7 +278,8 @@ export default {
         },
         {
           id: 4,
-          image: 'https://picsum.photos/200/300?random=4',
+          image: 'https://picsum.photos/3000/2000?random=4',
+          lazyimage: 'https://picsum.photos/200/300?random=4',
           title: 'Title 1',
           price: '900',
           old_price: '1000',
@@ -277,7 +288,8 @@ export default {
         },
         {
           id: 5,
-          image: 'https://picsum.photos/200/300?random=5',
+          image: 'https://picsum.photos/3000/2000?random=5',
+          lazyimage: 'https://picsum.photos/200/300?random=5',
           title: 'Title 1',
           price: '900',
           old_price: '1000',
@@ -286,7 +298,8 @@ export default {
         },
         {
           id: 6,
-          image: 'https://picsum.photos/200/300?random=6',
+          image: 'https://picsum.photos/3000/2000?random=6',
+          lazyimage: 'https://picsum.photos/200/300?random=6',
           title: 'Title 1',
           price: '900',
           old_price: '1000',
@@ -296,30 +309,22 @@ export default {
 
       ],
       productClicked: false,
-      clickedProductTitle: '',
-      clickedProductImage: '',
-      clickedProductOldPrice: '',
-      clickedProductDiscount: '',
-      clickedProductPrice: '',
-      clickedProductDescription: '',
-      clickedProductIndex: ''
+      clickedProductIndex: '',
+      clickedProduct: []
     }
   },
   methods: {
     magnifyClicked (n) {
       this.clickedProductIndex = n
       this.productClicked = true
-      this.clickedProduct = this.allProducts[n]
-      this.clickedProductTitle = this.allProducts[n].title
-      this.clickedProductDescription = this.allProducts[n].description
-      this.clickedProductImage = this.allProducts[n].image
-      this.clickedProductOldPrice = this.allProducts[n].old_price
-      this.clickedProductDiscount = this.allProducts[n].discount
-      this.clickedProductPrice = this.allProducts[n].price
+      this.clickedProduct = []
+      this.clickedProduct.push(this.allProducts[n])
     },
     checkMobileDesktop () {
+      console.log(this.$vuetify.breakpoint.name)
       if (
-        this.$vuetify.breakpoint.name === 'xs'
+        this.$vuetify.breakpoint.name === 'xs' ||
+        this.$vuetify.breakpoint.name === 'sm'
       ) {
         return false
       }
