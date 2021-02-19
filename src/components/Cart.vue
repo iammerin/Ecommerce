@@ -1,5 +1,7 @@
 <template>
-  <v-card>
+  <v-card
+    max-height="600"
+  >
     <v-toolbar
       dark
       color="primary"
@@ -66,15 +68,38 @@
         </v-list-item>
       </div>
     </v-list>
-    <v-divider />
-    <v-card-text class="text-h5 text-right mt-5">
-      Total:
-      <v-chip
-        color="primary"
-        class="ml-2"
-      >
-        Rs. {{ totalPrice }}
-      </v-chip>
+    <v-divider
+      style="background-color: white !important;"
+      class="pb-5"
+    />
+    <v-card-text
+      class="text-h5 d-flex"
+      style="background-color: white !important;"
+    >
+      <div>
+        <v-btn
+          to="checkout"
+          class="text-capitalize primary--text"
+          text
+        >
+          <v-icon
+            class="mr-2"
+          >
+            mdi-shopping-outline
+          </v-icon>
+          Checkout
+        </v-btn>
+      </div>
+      <v-spacer />
+      <div>
+        Total:
+        <v-chip
+          color="primary"
+          class="ml-2"
+        >
+          Rs. {{ totalPrice }}
+        </v-chip>
+      </div>
     </v-card-text>
   </v-card>
 </template>

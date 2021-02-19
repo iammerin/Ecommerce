@@ -1,8 +1,9 @@
 <template>
   <v-card
-    class="mx-auto navigationMenu ml-1"
+    class="mx-auto navigationMenu ml-1 mt-5"
     max-width="95vw"
     max-height="80vh"
+    style="overflow: auto"
   >
     <v-list>
       <v-subheader>Categories</v-subheader>
@@ -45,11 +46,87 @@
 export default {
   data () {
     return {
-      items: []
+      items: [
+        {
+          items: [
+            { title: 'Dresses' },
+            { title: 'Handbags' },
+            { title: 'Shoes' },
+            { title: 'Jackets' },
+            { title: 'Shirts' }
+          ],
+          active: true,
+          title: 'Clothing'
+        },
+        {
+          items: [
+            { title: 'Gaming' },
+            { title: 'Laptop Skins' },
+            { title: 'Apple' },
+            { title: 'Dell' },
+            { title: 'Lenovo' },
+            { title: 'Microsoft' },
+            { title: 'Asus' },
+            { title: 'Adapters' },
+            { title: 'Batteries' }
+          ],
+          title: 'Electronics'
+        },
+        {
+          items: [
+            { title: 'Sport Wear' },
+            { title: 'Shorts' },
+            { title: 'School Bags' },
+            { title: 'Wipes' },
+            { title: 'Footwear' },
+            { title: 'Toys' },
+            { title: 'Bags' },
+            { title: 'Blazzers' }
+          ],
+          title: 'Education'
+        },
+        {
+          items: [
+            { title: 'Sport Wear' },
+            { title: 'Shorts' },
+            { title: 'School Bags' },
+            { title: 'Wipes' },
+            { title: 'Footwear' },
+            { title: 'Toys' },
+            { title: 'Bags' },
+            { title: 'Blazzers' }
+          ],
+          title: 'Family'
+        },
+        {
+          items: [
+            { title: 'Sport Wear' },
+            { title: 'Shorts' },
+            { title: 'School Bags' },
+            { title: 'Wipes' },
+            { title: 'Footwear' },
+            { title: 'Toys' },
+            { title: 'Bags' },
+            { title: 'Blazzers' }
+          ],
+          title: 'Health'
+        },
+        {
+          items: [
+            { title: 'Chair' },
+            { title: 'Desk' },
+            { title: 'Stamps' }
+          ],
+          title: 'Office'
+        },
+        {
+          title: 'Promotions'
+        }
+      ]
     }
   },
   mounted () {
-    this.items = this.$store.state.categories
+    // this.items = this.$store.state.categories
   },
   methods: {
     checkChild (item) {

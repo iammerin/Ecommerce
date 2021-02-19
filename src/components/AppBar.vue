@@ -119,8 +119,9 @@
     <v-dialog
       v-if="cart.length > 0"
       v-model="cartDialog"
-      fullscreen
-      hide-overlay
+      width="600"
+      height="600"
+      max-height="60vh"
       transition="dialog-bottom-transition"
     >
       <template v-slot:activator="{ on, attrs }">

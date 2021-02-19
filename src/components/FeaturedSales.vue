@@ -242,8 +242,8 @@
                                         <v-row class="d-flex">
                                           <v-col cols="6">
                                             <h3
-                                              v-text="salesProduct[+index + i].name"
-                                              :title="salesProduct[+index + i].name"
+                                              v-text="salesProduct[+index + i].title"
+                                              :title="salesProduct[+index + i].title"
                                             />
                                           </v-col>
                                           <v-col cols="6">
@@ -290,7 +290,7 @@
                                         small
                                         dark
                                         class="primary"
-                                        @click.stop="addToCart(index)"
+                                        @click.stop="addToCart(+index + i)"
                                       >
                                         <v-icon>
                                           mdi-cart-plus
@@ -316,7 +316,6 @@
         v-model="productClicked"
         width="60vw"
         max-width="100vw"
-        persistent
       >
         <v-card
           v-for="(product, index) in clickedProduct"
@@ -395,23 +394,23 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-snackbar
-        v-model="productAddedSnackbar"
-        timeout="1000"
-      >
-        Product Added
-        <template v-slot:action="{ attrs }">
-          <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="productAddedSnackbar = false"
-          >
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
     </v-col>
+    <!-- <v&#45;snackbar -->
+    <!--   v&#45;model="productAddedSnackbar" -->
+    <!--   timeout="1000" -->
+    <!-- > -->
+    <!--   Product Added -->
+    <!--   <template v&#45;slot:action="{ attrs }"> -->
+    <!--     <v&#45;btn -->
+    <!--       color="blue" -->
+    <!--       text -->
+    <!--       v&#45;bind="attrs" -->
+    <!--       @click="productAddedSnackbar = false" -->
+    <!--     > -->
+    <!--       Close -->
+    <!--     </v&#45;btn> -->
+    <!--   </template> -->
+    <!-- </v&#45;snackbar> -->
   </v-row>
 </template>
 
@@ -478,7 +477,6 @@ export default {
       this.flashSalesClasses = ['text-h4', 'text-capitalize']
     },
     checkMobileDesktopForImage () {
-      console.log(this.$vuetify.breakpoint.name)
       if (
         this.$vuetify.breakpoint.name === 'xs' ||
         this.$vuetify.breakpoint.name === 'sm'
@@ -500,7 +498,8 @@ export default {
     salesProduct () {
       const slider = [
         {
-          name: 'Demo title 1',
+          id: 1,
+          title: 'Demo title 1',
           lazyimage: 'https://picsum.photos/200/300?random=1',
           image: 'https://picsum.photos/2200/1600?random=1',
           price: 200,
@@ -510,7 +509,8 @@ export default {
           alt: 'title'
         },
         {
-          name: 'Demo title 2',
+          id: 2,
+          title: 'Demo title 2',
           lazyimage: 'https://picsum.photos/200/300?random=2',
           image: 'https://picsum.photos/2200/1600?random=2',
           price: 200,
@@ -520,7 +520,8 @@ export default {
           alt: 'title'
         },
         {
-          name: 'Demo title 3',
+          id: 3,
+          title: 'Demo title 3',
           lazyimage: 'https://picsum.photos/200/300?random=3',
           image: 'https://picsum.photos/2200/1600?random=3',
           price: 200,
@@ -530,7 +531,8 @@ export default {
           alt: 'title'
         },
         {
-          name: 'Demo title 4',
+          id: 4,
+          title: 'Demo title 4',
           lazyimage: 'https://picsum.photos/200/300?random=4',
           image: 'https://picsum.photos/2200/1600?random=4',
           price: 200,
@@ -540,7 +542,8 @@ export default {
           alt: 'title'
         },
         {
-          name: 'Demo title 5',
+          id: 5,
+          title: 'Demo title 5',
           lazyimage: 'https://picsum.photos/200/300?random=5',
           image: 'https://picsum.photos/2200/1600?random=5',
           price: 200,
@@ -550,7 +553,8 @@ export default {
           alt: 'title'
         },
         {
-          name: 'Demo title 6',
+          id: 6,
+          title: 'Demo title 6',
           lazyimage: 'https://picsum.photos/200/300?random=6',
           image: 'https://picsum.photos/2200/1600?random=6',
           price: 200,
@@ -560,7 +564,8 @@ export default {
           alt: 'title'
         },
         {
-          name: 'Demo title 7',
+          id: 7,
+          title: 'Demo title 7',
           lazyimage: 'https://picsum.photos/200/300?random=7',
           image: 'https://picsum.photos/2200/1600?random=7',
           price: 200,

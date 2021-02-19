@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-10 mt-5">
     <div>
       <v-row
         align="center"
@@ -142,7 +142,6 @@
     <v-dialog
       v-model="productClicked"
       :width="widthOfProductDialog"
-      persistent
     >
       <v-card
         v-for="(product, index) in clickedProduct"
@@ -153,18 +152,26 @@
           justify="center"
           class="ma-0"
         >
-          <v-card-title class="headline">
-            {{ product.title }}
-          </v-card-title>
+          <v-toolbar
+            elevation="0"
+          >
+            <v-spacer />
+            <v-btn
+              icon
+              @click="productClicked = false"
+            >
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-toolbar>
         </v-row>
         <v-row
-          align="center"
+          align="start"
           justify="center"
           class="ma-0"
         >
           <v-col cols="6">
             <v-card
-              elevation="3"
+              elevation="6"
             >
               <v-img
                 height="60vh"
@@ -177,7 +184,14 @@
           </v-col>
           <v-col cols="6">
             <v-row>
-              <v-card-text>
+              <v-card-text class="text-h4">
+                {{ product.title }}
+              </v-card-text>
+            </v-row>
+            <v-row>
+              <v-card-text
+                class="subtitle-1"
+              >
                 {{ product.description }}
               </v-card-text>
             </v-row>
@@ -221,22 +235,22 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-snackbar
-      v-model="productAddedSnackbar"
-      timeout="1000"
-    >
-      Product Added
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="blue"
-          text
-          v-bind="attrs"
-          @click="productAddedSnackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
+    <!-- <v&#45;snackbar -->
+    <!--   v&#45;model="productAddedSnackbar" -->
+    <!--   timeout="1000" -->
+    <!-- > -->
+    <!--   Product Added -->
+    <!--   <template v&#45;slot:action="{ attrs }"> -->
+    <!--     <v&#45;btn -->
+    <!--       color="blue" -->
+    <!--       text -->
+    <!--       v&#45;bind="attrs" -->
+    <!--       @click="productAddedSnackbar = false" -->
+    <!--     > -->
+    <!--       Close -->
+    <!--     </v&#45;btn> -->
+    <!--   </template> -->
+    <!-- </v&#45;snackbar> -->
   </div>
 </template>
 
