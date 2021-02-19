@@ -51,6 +51,18 @@ export default new Vuex.Store({
         })
         state.cart.splice(yeha, 1)
       }
+    },
+    removeProduct (state, product) {
+      let yeha = ''
+      state.cart.filter(function (item, index) {
+        if (item.product.id === Number(product.product.id)) {
+          yeha = index
+          return true
+        } else {
+          return false
+        }
+      })
+      state.cart.splice(yeha, 1)
     }
   },
   actions: {
