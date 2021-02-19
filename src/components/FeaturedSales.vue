@@ -117,147 +117,297 @@
           </v-col>
         </v-row>
       </v-card>
-      <v-row class="mt-2 mb-10">
-        <v-carousel
-          hide-delimiters
-          light
-          cycle
-        >
-          <template v-slot:prev="{ on, attrs }">
-            <v-btn
-              color="primary white--text"
-              small
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-icon>
-                mdi-arrow-left-bold-circle-outline
-              </v-icon>
-            </v-btn>
-          </template>
-          <template v-slot:next="{ on, attrs }">
-            <v-btn
-              color="primary white--text"
-              small
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-icon>
-                mdi-arrow-right-bold-circle-outline
-              </v-icon>
-            </v-btn>
-          </template>
-          <template
-            v-for="(images, index) in salesProduct"
-            class="whiteThis"
+      <div>
+        <v-row class="mt-2 mb-10">
+          <v-carousel
+            hide-delimiters
+            light
+            cycle
           >
-            <v-carousel-item
-              v-if="(index + 1) % columns === 1 || columns === 1"
-              :key="index"
-            >
-              <v-row
-                class="flex-nowrap"
-                style="height: 100%"
+            <template v-slot:prev="{ on, attrs }">
+              <v-btn
+                color="primary white--text"
+                small
+                v-bind="attrs"
+                v-on="on"
               >
-                <template
-                  v-for="(n,i) in columns"
+                <v-icon>
+                  mdi-arrow-left-bold-circle-outline
+                </v-icon>
+              </v-btn>
+            </template>
+            <template v-slot:next="{ on, attrs }">
+              <v-btn
+                color="primary white--text"
+                small
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>
+                  mdi-arrow-right-bold-circle-outline
+                </v-icon>
+              </v-btn>
+            </template>
+            <template
+              v-for="(images, index) in salesProduct"
+              class="whiteThis"
+            >
+              <v-carousel-item
+                v-if="(index + 1) % columns === 1 || columns === 1"
+                :key="index"
+              >
+                <v-row
+                  class="flex-nowrap"
+                  style="height: 100%"
                 >
                   <template
-                    v-if="(+index + i) < salesProduct.length"
+                    v-for="(n,i) in columns"
                   >
-                    <v-col :key="i">
-                      <v-sheet
-                        color="white"
-                        height="100%"
-                      >
-                        <v-row
-                          class="fill-height"
-                          align="center"
-                          justify="center"
+                    <template
+                      v-if="(+index + i) < salesProduct.length"
+                    >
+                      <v-col :key="i">
+                        <v-sheet
+                          color="white"
+                          height="100%"
                         >
-                          <v-card
-                            class="mr-5"
+                          <v-row
+                            class="fill-height"
+                            align="center"
+                            justify="center"
                           >
-                            <v-img
-                              :src="salesProduct[+index + i].image"
-                              :lazy-src="salesProduct[+index + i].image"
-                              :alt="salesProduct[+index + i].alt"
-                              class="fill-height"
-                              height="300"
-                              width="250"
-                              contain
-                            >
-                              <template v-slot:placeholder>
-                                <v-row
-                                  class="fill-height ma-0"
-                                  align="center"
-                                  justify="center"
-                                >
-                                  <v-progress-circular
-                                    indeterminate
-                                    color="primary"
-                                  />
-                                </v-row>
-                              </template>
-                            </v-img>
-                            <v-card-text>
-                              <v-container
-                                class="productDetails"
-                                style="width: 100%!important;"
-                                color="transparent"
+                            <v-hover v-slot="{ hover }">
+                              <v-card
+                                class="hoverCardAnimation"
+                                :elevation="hover ? 16:1"
                               >
-                                <div
-                                  class="productDetailsCard"
-                                  style="width: 100%!important"
-                                  color="transparent"
+                                <v-img
+                                  :lazy-src="salesProduct[+index + i].lazyimage"
+                                  :src="salesProduct[+index + i].image"
+                                  height="200"
+                                  :width="checkMobileDesktop? 300:'100%' "
+                                  @click="magnifyClicked(index)"
                                 >
-                                  <div
-                                    class="productCardContent"
-                                    style="width: 100%!important"
-                                  >
-                                    <v-row class="d-flex">
-                                      <v-col cols="6">
-                                        <h3
-                                          v-text="salesProduct[+index + i].name"
-                                          :title="salesProduct[+index + i].name"
-                                        />
-                                      </v-col>
-                                      <v-col cols="6">
-                                        <h5
-                                          style="color: red!important"
-                                          title="Discount"
+                                  <v-expand-transition>
+                                    <v-row
+                                      class="fill-height ma-0"
+                                      align="center"
+                                      justify="center"
+                                    >
+                                      <div
+                                        v-if="hover"
+                                        class="d-flex display-3 white--text"
+                                      >
+                                        <v-icon
+                                          dark
+                                          class="text-h2"
+                                          @click="magnifyClicked(index)"
+                                          small
                                         >
-                                          Rs.
-                                          <strike>
-                                            {{ salesProduct[+index + i].old_price }}
-                                          </strike>
-                                          - {{ salesProduct[+index + i].product_discount }}
-                                          = Rs. {{ salesProduct[+index + i].product_price }}
-                                        </h5>
-                                      </v-col>
+                                          mdi-magnify-plus-outline
+                                        </v-icon>
+                                      </div>
                                     </v-row>
-                                    <v-row class="d-flex">
-                                      <v-col cols="12">
-                                        <div class="productDetailsCard_hover_content">
-                                          <p v-text="salesProduct[+index + i].description" />
-                                        </div>
-                                      </v-col>
+                                  </v-expand-transition>
+                                  <template v-slot:placeholder>
+                                    <v-row
+                                      class="fill-height ma-0"
+                                      align="center"
+                                      justify="center"
+                                    >
+                                      <v-progress-circular
+                                        indeterminate
+                                        color="primary"
+                                      />
                                     </v-row>
-                                  </div>
-                                </div>
-                              </v-container>
-                            </v-card-text>
-                          </v-card>
-                        </v-row>
-                      </v-sheet>
-                    </v-col>
+                                  </template>
+                                </v-img>
+                                <v-card-text>
+                                  <v-container
+                                    class="productDetails"
+                                    style="width: 100%!important;"
+                                    color="transparent"
+                                  >
+                                    <div
+                                      class="productDetailsCard"
+                                      style="width: 100%!important"
+                                      color="transparent"
+                                    >
+                                      <div
+                                        class="productCardContent"
+                                        style="width: 100%!important"
+                                      >
+                                        <v-row class="d-flex">
+                                          <v-col cols="6">
+                                            <h3
+                                              v-text="salesProduct[+index + i].name"
+                                              :title="salesProduct[+index + i].name"
+                                            />
+                                          </v-col>
+                                          <v-col cols="6">
+                                            <h5
+                                              style="color: red!important"
+                                              title="Discount"
+                                            >
+                                              Rs.
+                                              <strike>
+                                                {{ salesProduct[+index + i].old_price }}
+                                              </strike>
+                                              - {{ salesProduct[+index + i].product_discount }}
+                                              = Rs. {{ salesProduct[+index + i].product_price }}
+                                            </h5>
+                                          </v-col>
+                                        </v-row>
+                                        <v-row class="d-flex">
+                                          <v-col cols="12">
+                                            <div class="productDetailsCard_hover_content">
+                                              <p v-text="salesProduct[+index + i].description" />
+                                            </div>
+                                          </v-col>
+                                        </v-row>
+                                      </div>
+                                    </div>
+                                  </v-container>
+                                  <v-row class="mt-1">
+                                    <v-col cols="12">
+                                      <div class="subtitle-2 green--text">
+                                        Rs. {{ salesProduct[+index + i].price }}
+                                      </div>
+                                    </v-col>
+                                  </v-row>
+                                  <v-row class="ma-0">
+                                    <v-col
+                                      cols="8"
+                                    >
+                                      <div class="caption">
+                                        Rs. <strike>{{ salesProduct[+index + i].old_price }}</strike> - {{ salesProduct[+index + i].discount }}%
+                                      </div>
+                                    </v-col>
+                                    <v-col cols="3">
+                                      <v-btn
+                                        small
+                                        dark
+                                        class="primary"
+                                        @click="addToCart(index)"
+                                      >
+                                        <v-icon>
+                                          mdi-cart-plus
+                                        </v-icon>
+                                      </v-btn>
+                                    </v-col>
+                                  </v-row>
+                                </v-card-text>
+                              </v-card>
+                            </v-hover>
+                          </v-row>
+                        </v-sheet>
+                      </v-col>
+                    </template>
                   </template>
-                </template>
+                </v-row>
+              </v-carousel-item>
+            </template>
+          </v-carousel>
+        </v-row>
+      </div>
+      <v-dialog
+        v-model="productClicked"
+        :width="widthOfProductDialog"
+        persistent
+      >
+        <v-card
+          v-for="(product, index) in clickedProduct"
+          :key="index"
+        >
+          <v-row
+            align="center"
+            justify="center"
+            class="ma-0"
+          >
+            <v-card-title class="headline">
+              {{ product.title }}
+            </v-card-title>
+          </v-row>
+          <v-row
+            align="center"
+            justify="center"
+            class="ma-0"
+          >
+            <v-col cols="6">
+              <v-card
+                elevation="3"
+              >
+                <v-img
+                  height="60vh"
+                  :lazy-src="product.lazyimage"
+                  :src="product.image"
+                  style="object-fit: contain;"
+                  class="fill-height"
+                />
+              </v-card>
+            </v-col>
+            <v-col cols="6">
+              <v-row>
+                <v-card-text>
+                  {{ product.description }}
+                </v-card-text>
               </v-row>
-            </v-carousel-item>
-          </template>
-        </v-carousel>
-      </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <div class="subtitle-1 green--text">
+                    Rs. {{ product.price }}
+                  </div>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <div class="caption">
+                    Rs. <strike>{{ product.old_price }}</strike> - {{ product.discount }}%
+                  </div>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+          <v-card-actions>
+            <v-btn
+              color="green darken-1"
+              text
+              @click="productClicked = false"
+            >
+              Close
+            </v-btn>
+            <v-spacer />
+            <v-btn
+              color="green darken-1"
+              text
+              @click="addToCart()"
+            >
+              <v-icon
+                class="mr-2"
+              >
+                mdi-cart-plus
+              </v-icon>
+              Add To Cart
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <v-snackbar
+        v-model="productAddedSnackbar"
+        timeout="1000"
+      >
+        Product Added
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="blue"
+            text
+            v-bind="attrs"
+            @click="productAddedSnackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-col>
   </v-row>
 </template>
@@ -267,12 +417,31 @@ export default {
   name: 'FeaturedSales',
   data () {
     return {
+      productAddedSnackbar: false,
       time: 0,
       flashSalesClasses: ['text-h4', 'text-capitalize'],
-      deadline: new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000)
+      deadline: new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000),
+      productClicked: false,
+      clickedProductIndex: '',
+      clickedProduct: []
     }
   },
   methods: {
+    addToCart (index) {
+      var product = null
+      if (index === undefined) { product = this.salesProduct[this.clickedProductIndex] } else { product = this.salesProduct[index] }
+      this.$store
+        .dispatch('addProductsToCart', product)
+        .then(() => {
+          this.productAddedSnackbar = true
+        })
+    },
+    magnifyClicked (n) {
+      this.clickedProductIndex = n
+      this.productClicked = true
+      this.clickedProduct = []
+      this.clickedProduct.push(this.salesProduct[n])
+    },
     initializeClock () {
       const timeinterval = setInterval(() => {
         const t = this.timeRemaining()
@@ -304,12 +473,27 @@ export default {
     },
     hoverOut () {
       this.flashSalesClasses = ['text-h4', 'text-capitalize']
+    },
+    checkMobileDesktopForImage () {
+      console.log(this.$vuetify.breakpoint.name)
+      if (
+        this.$vuetify.breakpoint.name === 'xs' ||
+        this.$vuetify.breakpoint.name === 'sm'
+      ) {
+        return false
+      }
+      return true
     }
   },
   mounted () {
     this.initializeClock()
   },
   computed: {
+    widthOfProductDialog () {
+      const check = this.checkMobileDesktopForImage()
+      if (!check) { return '100vw' }
+      return '60vw'
+    },
     salesProduct () {
       const slider = [
         {
