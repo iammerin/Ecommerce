@@ -7,7 +7,6 @@
     v-scroll="changeColorOnScroll"
     elevate-on-scroll
     :dark="dark"
-    class="ml-5 mr-5"
     height="70"
   >
     <v-toolbar-title>

@@ -5,38 +5,7 @@
     class="mt-2"
   >
     <v-col cols="10">
-      <v-row>
-        <!-- <v&#45;col cols="3"> -->
-        <!--   <v&#45;card -->
-        <!--     class="mx&#45;auto navigationMenu" -->
-        <!--     max&#45;width="500" -->
-        <!--     max&#45;height="700" -->
-        <!--   > -->
-        <!--     <v&#45;list> -->
-        <!--       <v&#45;subheader>Categories</v&#45;subheader> -->
-        <!--       <v&#45;list&#45;group -->
-        <!--         v&#45;for="item in items" -->
-        <!--         :key="item.title" -->
-        <!--         v&#45;model="item.active" -->
-        <!--         no&#45;action -->
-        <!--       > -->
-        <!--         <template v&#45;slot:activator> -->
-        <!--           <v&#45;list&#45;item&#45;content> -->
-        <!--             <v&#45;list&#45;item&#45;title v&#45;text="item.title"></v&#45;list&#45;item&#45;title> -->
-        <!--           </v&#45;list&#45;item&#45;content> -->
-        <!--         </template> -->
-        <!--         <v&#45;list&#45;item -->
-        <!--           v&#45;for="child in item.items" -->
-        <!--           :key="child.title" -->
-        <!--           link -->
-        <!--           :to="child.title" -->
-        <!--         > -->
-        <!--           <v&#45;list&#45;item&#45;title v&#45;text="child.title"></v&#45;list&#45;item&#45;title> -->
-        <!--         </v&#45;list&#45;item> -->
-        <!--       </v&#45;list&#45;group> -->
-        <!--     </v&#45;list> -->
-        <!--   </v&#45;card> -->
-        <!-- </v&#45;col> -->
+      <v-row class="ThisOneOverHere">
         <v-col cols="12">
           <v-card elevation="24">
             <v-carousel
@@ -55,6 +24,7 @@
                   :src="item.src"
                   :lazy-src="item.src"
                   class="fill-height"
+                  max-width="100vw"
                 >
                   <template v-slot:placeholder>
                     <v-row
@@ -68,7 +38,7 @@
                       />
                     </v-row>
                   </template>
-                  <v-col cols="12">
+                  <v-col>
                     <v-sheet
                       color="transparent"
                       height="72vh"
@@ -222,6 +192,6 @@ export default {
 
 <style>
 .navigationMenu {
-  overflow-y: auto !important;
+  overflow-y: none;
 }
 </style>

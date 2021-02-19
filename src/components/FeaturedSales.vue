@@ -120,9 +120,9 @@
       <div>
         <v-row class="mt-2 mb-10">
           <v-carousel
-            hide-delimiters
-            light
+            hide-delimiter-background
             cycle
+            light
           >
             <template v-slot:prev="{ on, attrs }">
               <v-btn
@@ -178,15 +178,15 @@
                           >
                             <v-hover v-slot="{ hover }">
                               <v-card
-                                class="hoverCardAnimation"
+                                class="hoverCardAnimation mr-2"
                                 :elevation="hover ? 16:1"
                               >
                                 <v-img
                                   :lazy-src="salesProduct[+index + i].lazyimage"
                                   :src="salesProduct[+index + i].image"
                                   height="200"
-                                  :width="checkMobileDesktop? 300:'100%' "
-                                  @click="magnifyClicked(index)"
+                                  :width="checkMobileDesktop? 320:'100%' "
+                                  @click="magnifyClicked(+index + i)"
                                 >
                                   <v-expand-transition>
                                     <v-row
@@ -222,7 +222,9 @@
                                     </v-row>
                                   </template>
                                 </v-img>
-                                <v-card-text>
+                                <v-card-text
+                                  @click="magnifyClicked(index)"
+                                >
                                   <v-container
                                     class="productDetails"
                                     style="width: 100%!important;"
@@ -253,8 +255,8 @@
                                               <strike>
                                                 {{ salesProduct[+index + i].old_price }}
                                               </strike>
-                                              - {{ salesProduct[+index + i].product_discount }}
-                                              = Rs. {{ salesProduct[+index + i].product_price }}
+                                              - {{ salesProduct[+index + i].discount }}
+                                              = Rs. {{ salesProduct[+index + i].price }}
                                             </h5>
                                           </v-col>
                                         </v-row>
@@ -288,7 +290,7 @@
                                         small
                                         dark
                                         class="primary"
-                                        @click="addToCart(index)"
+                                        @click.stop="addToCart(index)"
                                       >
                                         <v-icon>
                                           mdi-cart-plus
@@ -312,7 +314,8 @@
       </div>
       <v-dialog
         v-model="productClicked"
-        :width="widthOfProductDialog"
+        width="60vw"
+        max-width="100vw"
         persistent
       >
         <v-card
@@ -498,37 +501,72 @@ export default {
       const slider = [
         {
           name: 'Demo title 1',
-          image: 'https://picsum.photos/200/300?random=1',
+          lazyimage: 'https://picsum.photos/200/300?random=1',
+          image: 'https://picsum.photos/2200/1600?random=1',
+          price: 200,
+          old_price: 400,
+          discount: 10,
+          description: 'This is the demo description',
           alt: 'title'
         },
         {
           name: 'Demo title 2',
-          image: 'https://picsum.photos/200/300?random=2',
+          lazyimage: 'https://picsum.photos/200/300?random=2',
+          image: 'https://picsum.photos/2200/1600?random=2',
+          price: 200,
+          old_price: 400,
+          discount: 10,
+          description: 'This is the demo description',
           alt: 'title'
         },
         {
           name: 'Demo title 3',
-          image: 'https://picsum.photos/200/300?random=3',
+          lazyimage: 'https://picsum.photos/200/300?random=3',
+          image: 'https://picsum.photos/2200/1600?random=3',
+          price: 200,
+          old_price: 400,
+          description: 'This is the demo description',
+          discount: 10,
           alt: 'title'
         },
         {
           name: 'Demo title 4',
-          image: 'https://picsum.photos/200/300?random=4',
+          lazyimage: 'https://picsum.photos/200/300?random=4',
+          image: 'https://picsum.photos/2200/1600?random=4',
+          price: 200,
+          description: 'This is the demo description',
+          old_price: 400,
+          discount: 10,
           alt: 'title'
         },
         {
           name: 'Demo title 5',
-          image: 'https://picsum.photos/200/300?random=5',
+          lazyimage: 'https://picsum.photos/200/300?random=5',
+          image: 'https://picsum.photos/2200/1600?random=5',
+          price: 200,
+          old_price: 400,
+          description: 'This is the demo description',
+          discount: 10,
           alt: 'title'
         },
         {
           name: 'Demo title 6',
-          image: 'https://picsum.photos/200/300?random=6',
+          lazyimage: 'https://picsum.photos/200/300?random=6',
+          image: 'https://picsum.photos/2200/1600?random=6',
+          price: 200,
+          description: 'This is the demo description',
+          old_price: 400,
+          discount: 10,
           alt: 'title'
         },
         {
           name: 'Demo title 7',
-          image: 'https://picsum.photos/200/300?random=7',
+          lazyimage: 'https://picsum.photos/200/300?random=7',
+          image: 'https://picsum.photos/2200/1600?random=7',
+          price: 200,
+          description: 'This is the demo description',
+          old_price: 400,
+          discount: 10,
           alt: 'title'
         }
       ]
