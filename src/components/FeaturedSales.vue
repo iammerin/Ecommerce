@@ -179,9 +179,9 @@
                             class="mr-5"
                           >
                             <v-img
-                              :src="images.image"
-                              :lazy-src="images.image"
-                              :alt="images.alt"
+                              :src="salesProduct[+index + i].image"
+                              :lazy-src="salesProduct[+index + i].image"
+                              :alt="salesProduct[+index + i].alt"
                               class="fill-height"
                               height="300"
                               width="250"
@@ -218,8 +218,8 @@
                                     <v-row class="d-flex">
                                       <v-col cols="6">
                                         <h3
-                                          v-text="images.name"
-                                          :title="images.name"
+                                          v-text="salesProduct[+index + i].name"
+                                          :title="salesProduct[+index + i].name"
                                         />
                                       </v-col>
                                       <v-col cols="6">
@@ -227,15 +227,19 @@
                                           style="color: red!important"
                                           title="Discount"
                                         >
-                                          Rs. <strike>{{ images.old_price }}</strike> - {{ images.product_discount }}
-                                          = Rs. {{ images.product_price }}
+                                          Rs.
+                                          <strike>
+                                            {{ salesProduct[+index + i].old_price }}
+                                          </strike>
+                                          - {{ salesProduct[+index + i].product_discount }}
+                                          = Rs. {{ salesProduct[+index + i].product_price }}
                                         </h5>
                                       </v-col>
                                     </v-row>
                                     <v-row class="d-flex">
                                       <v-col cols="12">
                                         <div class="productDetailsCard_hover_content">
-                                          <p v-text="images.description" />
+                                          <p v-text="salesProduct[+index + i].description" />
                                         </div>
                                       </v-col>
                                     </v-row>
@@ -309,28 +313,41 @@ export default {
     salesProduct () {
       const slider = [
         {
-          name: 'title1'
+          name: 'Demo title 1',
+          image: 'https://picsum.photos/200/300?random=1',
+          alt: 'title'
         },
         {
-          name: 'title2'
+          name: 'Demo title 2',
+          image: 'https://picsum.photos/200/300?random=2',
+          alt: 'title'
         },
         {
-          name: 'title3'
+          name: 'Demo title 3',
+          image: 'https://picsum.photos/200/300?random=3',
+          alt: 'title'
         },
         {
-          name: 'title4'
+          name: 'Demo title 4',
+          image: 'https://picsum.photos/200/300?random=4',
+          alt: 'title'
         },
         {
-          name: 'title5'
+          name: 'Demo title 5',
+          image: 'https://picsum.photos/200/300?random=5',
+          alt: 'title'
+        },
+        {
+          name: 'Demo title 6',
+          image: 'https://picsum.photos/200/300?random=6',
+          alt: 'title'
+        },
+        {
+          name: 'Demo title 7',
+          image: 'https://picsum.photos/200/300?random=7',
+          alt: 'title'
         }
       ]
-      console.log('store featured sales')
-      console.log(this.$store.state.featuredSales)
-      console.log('dummy slider')
-      console.log(slider)
-      var newArray = Object.values(this.$store.state.featuredSales)
-      console.log('new data')
-      console.log(newArray)
       return slider
     },
     columns () {
