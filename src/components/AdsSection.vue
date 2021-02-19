@@ -15,8 +15,8 @@
             elevation="4"
           >
             <v-img
-              src="../assets/wallpaperflare.com_wallpaper.jpg"
-              lazy-src="https://picsum.photos/id/11/100/60"
+              src="../assets/adsSection/original.jpg"
+              lazy-src="../assets/adsSection/lazy.jpg"
               max-width="100vw"
               max-height="350"
             >
