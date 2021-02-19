@@ -10,6 +10,7 @@
           <router-view />
         </transition>
       </v-main>
+      <FooterDesign />
     </div>
     <v-container
       fill-height
@@ -41,13 +42,15 @@
 import AppBar from './components/AppBar'
 import { SpringSpinner } from 'epic-spinners'
 import store from './store/index.js'
+import FooterDesign from './components/FooterDesign'
 
 export default {
   name: 'App',
 
   components: {
     AppBar,
-    SpringSpinner
+    SpringSpinner,
+    FooterDesign
   },
 
   data: () => ({
