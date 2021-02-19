@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import baseAPIurls from '../helpers/baseAPIurls'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
       state.totalPrice = totalPrice
     },
     setAll (state, all) {
+      console.log(all.details[0].sliders)
       state.featuredSales = all.details[0].sliders
       state.categories = all.details[0].category
       state.products = all.details[0].product_for_you
@@ -54,7 +56,17 @@ export default new Vuex.Store({
   actions: {
     fetchProducts ({ commit }) {
       return new Promise((resolve, reject) => {
-        axios('http://192.168.100.11:8000/api/v1/home/').then(
+        axios(baseAPIurls.urls.home).then(
+          (response) => {
+            commit('setAll', response.data)
+            resolve()
+          }
+        )
+      })
+    },
+    fetchCategories ({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios(baseAPIurls.urls.categories).then(
           (response) => {
             commit('setAll', response.data)
             resolve()

@@ -167,7 +167,6 @@
                   >
                     <v-col :key="i">
                       <v-sheet
-                        v-if="(+index + i) < salesProduct.length"
                         color="white"
                         height="100%"
                       >
@@ -308,26 +307,43 @@ export default {
   },
   computed: {
     salesProduct () {
-      const tempData = [
+      const slider = [
         {
-          name: 'try1',
-          image: 'dfad'
+          name: 'title1'
         },
         {
-          name: 'try2',
-          image: 'fadfdsfad'
+          name: 'title2'
+        },
+        {
+          name: 'title3'
+        },
+        {
+          name: 'title4'
+        },
+        {
+          name: 'title5'
         }
       ]
-      return tempData
+      console.log('store featured sales')
+      console.log(this.$store.state.featuredSales)
+      console.log('dummy slider')
+      console.log(slider)
+      var newArray = Object.values(this.$store.state.featuredSales)
+      console.log('new data')
+      console.log(newArray)
+      return slider
     },
     columns () {
       if (this.$vuetify.breakpoint.xl) {
-        return 4
+        return 5
       }
       if (this.$vuetify.breakpoint.lg) {
-        return 3
+        return 4
       }
       if (this.$vuetify.breakpoint.md) {
+        return 3
+      }
+      if (this.$vuetify.breakpoint.sm) {
         return 2
       }
       return 1

@@ -20,7 +20,7 @@
         v-if="checkMobileDesktop"
       >
         <v-img
-          src="../assets/logo.png"
+          src="../assets/demologo.png"
           contain
           width="110"
           height="70"
@@ -40,7 +40,7 @@
         class="mr-10"
       >
         <v-img
-          src="../assets/logo.png"
+          src="../assets/demologo.png"
           contain
           width="70"
           height="30"
@@ -227,7 +227,7 @@
               class="mr-10"
             >
               <v-img
-                src="../assets/logo.png"
+                src="../assets/demologo.png"
                 contain
                 width="70"
                 height="30"
