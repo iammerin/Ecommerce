@@ -141,7 +141,7 @@
     </div>
     <v-dialog
       v-model="productClicked"
-      :width="widthOfProductDialog"
+      :max-width="widthOfProductDialog"
     >
       <v-card
         v-for="(product, index) in clickedProduct"

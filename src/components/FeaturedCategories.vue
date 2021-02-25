@@ -16,7 +16,7 @@
         :key="index"
       >
         <v-card
-          class="cardToAnimateOnHover slide"
+          class="cardToAnimateOnHover"
           height="150"
           :to="featured.link"
         >
@@ -56,20 +56,22 @@
     <v-col
       cols="12"
       v-else
-      class="ma-auto d-flex"
+      class="ma-auto flex-wrap"
+      v-for="(featured, index) in categories"
+      :key="index"
     >
-      <v-col
+      <v-row
         cols="6"
         md="2"
         sm="4"
         lg="2"
-        v-for="(featured, index) in categories"
-        :key="index"
+        align="center"
+        justify="center"
       >
         <v-card
-          class="slide"
           :to="featured.link"
-          v-if="index < 2"
+          class="mt-5"
+          max-width="99vw"
         >
           <v-card-text>
             <v-img
@@ -102,7 +104,7 @@
             </v-row>
           </v-card-actions>
         </v-card>
-      </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
