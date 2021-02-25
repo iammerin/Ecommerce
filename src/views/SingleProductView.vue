@@ -10,7 +10,12 @@
         :key="index"
       >
         <v-row>
-          <v-col cols="7">
+          <v-col
+            cols="12"
+            md="7"
+            sm="6"
+            lg="7"
+          >
             <v-card
               elevation="6"
               style="border-radius 10px;"
@@ -35,7 +40,12 @@
               </v-img>
             </v-card>
           </v-col>
-          <v-col cols="5">
+          <v-col
+            cols="12"
+            md="5"
+            sm="6"
+            lg="5"
+          >
             <v-row>
               <v-col>
                 <div
@@ -88,24 +98,38 @@
             <v-row>
               <v-col>
                 <div>
-                  Quantity:
-                  <v-chip
-                    class="primary white--text ml-2 mr-2"
-                    small
-                    style="cursor: pointer;"
-                    @click="addProductsToCart(product)"
+                  <v-col
+                    cols="12"
+                    lg="1"
+                    md="1"
+                    sm="1"
                   >
-                    <h2>+</h2>
-                  </v-chip>
-                  {{ displayQuantity }}
-                  <v-chip
-                    class="ml-2 primary white--text"
-                    small
-                    style="cursor: pointer;"
-                    @click="subtractQuantity(product)"
+                    Quantity:
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    lg="11"
+                    md="11"
+                    sm="11"
                   >
-                    <h2>-</h2>
-                  </v-chip>
+                    <v-chip
+                      class="primary white--text"
+                      small
+                      style="cursor: pointer;"
+                      @click="addProductsToCart(product)"
+                    >
+                      <h2>+</h2>
+                    </v-chip>
+                    {{ displayQuantity }}
+                    <v-chip
+                      class="primary white--text"
+                      small
+                      style="cursor: pointer;"
+                      @click="subtractQuantity(product)"
+                    >
+                      <h2>-</h2>
+                    </v-chip>
+                  </v-col>
                 </div>
               </v-col>
               <v-col>
@@ -363,7 +387,7 @@ export default {
       this.$store.dispatch('addProductsToCart', product)
     },
     subtractQuantity (product) {
-      this.$store.commit('subtractQuantity', product)
+      this.$store.commit('checkAndSubtractQuantity', product)
     }
   },
   computed: {

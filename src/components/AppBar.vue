@@ -70,6 +70,7 @@
         class="ma-5"
       />
     </v-form>
+    <v-spacer />
     <div
       id="nav"
       v-if="checkMobileDesktop"
@@ -290,16 +291,10 @@ export default {
       cartDialog: false,
       routes: [
         { name: 'About', link: '/about' },
-        { name: 'Deals', link: '/deals' },
-        { name: 'TOA', link: '/terms-and-conditions' },
-        { name: 'Stores', link: '/stores' },
         { name: 'Categories', link: '/categories' }
       ],
       mobileRoutes: [
         { name: 'About', link: '/about' },
-        { name: 'Deals', link: '/deals' },
-        { name: 'TOA', link: '/terms-and-conditions' },
-        { name: 'Stores', link: '/stores' },
         { name: 'Categories', link: '/categories' },
         { name: 'Login', link: '/login' },
         { name: 'Register', link: '/register' }

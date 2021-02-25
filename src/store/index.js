@@ -42,6 +42,7 @@ export default new Vuex.Store({
       product.quantity++
     },
     subtractQuantity (state, product) {
+      console.log(product)
       if (product.quantity > 1) {
         product.quantity--
       } else {
@@ -54,6 +55,22 @@ export default new Vuex.Store({
             return false
           }
         })
+        state.cart.splice(yeha, 1)
+      }
+    },
+    checkAndSubtractQuantity (state, product) {
+      let yeha = false
+      state.cart.filter(function (item, index) {
+        if (item.product.id === Number(product.id)) {
+          if (item.quantity > 1) {
+            item.quantity--
+          } else {
+            yeha = index
+            return false
+          }
+        }
+      })
+      if (yeha !== false) {
         state.cart.splice(yeha, 1)
       }
     },
