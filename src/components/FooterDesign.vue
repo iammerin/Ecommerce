@@ -26,6 +26,12 @@
             </b>
             <div class="mt-3">
               Lorem ipsum dolor sit amet,
+              Lorem ipsum dolor sit amet,
+              Lorem ipsum dolor sit amet,
+              Lorem ipsum dolor sit amet,
+              Lorem ipsum dolor sit amet,
+              Lorem ipsum dolor sit amet,
+              Lorem ipsum dolor sit amet,
             </div>
           </div>
         </v-col>
@@ -51,8 +57,9 @@
                 text
                 rounded
                 class="text-capitalize"
+                :to="link.link"
               >
-                {{ link }}
+                {{ link.name }}
               </v-btn>
             </div>
           </div>
@@ -74,8 +81,9 @@
                 text
                 rounded
                 class="my-1 text-capitalize"
+                :to="link.link"
               >
-                {{ link }}
+                {{ link.name }}
               </v-btn>
             </div>
           </div>
@@ -201,17 +209,44 @@ export default {
   data: () => ({
     email: '',
     quickLinks: [
-      'About Us',
-      'Team',
-      'Services',
-      'Blog',
-      'Contact Us'
+      {
+        name: 'About Us',
+        link: '/about'
+      },
+      {
+        name: 'Team',
+        link: '/team'
+      },
+      {
+        name: 'Services',
+        link: '/services'
+      },
+      {
+        name: 'Blog',
+        link: '/blog'
+      },
+      {
+        name: 'Contact Us',
+        link: '/contact'
+      }
     ],
     otherLinks: [
-      'Terms & Conditions',
-      'Privacy Policy',
-      'Cookie Policy',
-      'Tickets'
+      {
+        name: 'Terms & Conditions',
+        link: '/terms-and-conditions'
+      },
+      {
+        name: 'Privacy Policy',
+        link: '/privacy'
+      },
+      {
+        name: 'Cookie Policy',
+        link: '/cookiepolicy'
+      },
+      {
+        name: 'Tickets',
+        link: '/tickets'
+      }
     ],
     subscribeModel: false
   }),

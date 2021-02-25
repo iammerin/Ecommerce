@@ -23,11 +23,6 @@
         height="100%"
         justify="center"
       >
-        <!-- /* Leave this like this for some while*/ -->
-        <!-- <v&#45;progress&#45;circular -->
-        <!--   indeterminate -->
-        <!--   color="primary" -->
-        <!-- ></v&#45;progress&#45;circular> -->
         <spring-spinner
           :animation-duration="3000"
           :size="60"
@@ -41,7 +36,6 @@
 <script>
 import AppBar from './components/AppBar'
 import { SpringSpinner } from 'epic-spinners'
-import store from './store/index.js'
 import FooterDesign from './components/FooterDesign'
 
 export default {
@@ -69,13 +63,15 @@ export default {
   mounted () {
     const currentCursor = this
     currentCursor.loading = true
-    store
+    this.$store
       .dispatch('fetchProducts')
       .then(() => (currentCursor.loading = false))
       .catch((error) => {
         console.log(error)
         currentCursor.isError = true
       })
+    this.$store
+      .dispatch('fetchCategories')
   }
 }
 </script>
