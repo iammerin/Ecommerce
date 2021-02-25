@@ -31,6 +31,18 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Categories.vue')
   },
   {
+    path: '/product',
+    name: 'SingleProductParent',
+    component: () => import(/* webpackChunkName: 'product' */ '../views/Product.vue'),
+    children: [
+      {
+        path: ':product',
+        name: 'Product',
+        component: () => import(/* webpackChunkName: "singleproduct" */ '../views/SingleProductView.vue')
+      }
+    ]
+  },
+  {
     path: '*',
     name: 'Error',
     component: () => import(/* webpackChunkName: "404" */'../views/NotFound.vue')

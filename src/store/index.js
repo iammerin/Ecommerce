@@ -11,9 +11,14 @@ export default new Vuex.Store({
     products: [],
     featuredSales: [],
     categories: [],
-    totalPrice: 0
+    totalPrice: 0,
+    clickedProduct: []
   },
   mutations: {
+    setClickedProduct (state, product) {
+      state.clickedProduct = []
+      state.clickedProduct.push(product)
+    },
     total (state, totalPrice) {
       state.totalPrice = totalPrice
     },
@@ -33,7 +38,7 @@ export default new Vuex.Store({
         }
       })
     },
-    addQuantity (state, product) {
+    addQuantity (product) {
       product.quantity++
     },
     subtractQuantity (state, product) {
@@ -66,6 +71,12 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    changeClickedProduct ({ commit }, { product }) {
+      return new Promise((resolve) => {
+        commit('setClickedProduct', product)
+        resolve()
+      })
+    },
     fetchProducts ({ commit }) {
       return new Promise((resolve, reject) => {
         axios(baseAPIurls.urls.home).then(

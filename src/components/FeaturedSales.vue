@@ -200,8 +200,7 @@
                                       >
                                         <v-icon
                                           dark
-                                          class="text-h2"
-                                          @click="magnifyClicked(index)"
+                                          class="text-h2 makeHoverLink"
                                           small
                                         >
                                           mdi-magnify-plus-outline
@@ -328,6 +327,16 @@
           >
             <v-card-title class="headline">
               {{ product.title }}
+              <v-btn
+                icon
+                class="ml-5"
+                title="Check Product"
+                :to="checkSingleProductLink(product.title)"
+              >
+                <v-icon>
+                  mdi-arrow-right-bold-circle-outline
+                </v-icon>
+              </v-btn>
             </v-card-title>
           </v-row>
           <v-row
@@ -429,6 +438,9 @@ export default {
     }
   },
   methods: {
+    checkSingleProductLink (title) {
+      return '/product/' + title.toLowerCase()
+    },
     addToCart (index) {
       var product = null
       if (index === undefined) { product = this.salesProduct[this.clickedProductIndex] } else { product = this.salesProduct[index] }
@@ -439,6 +451,10 @@ export default {
         })
     },
     magnifyClicked (n) {
+      this.$store
+        .dispatch('changeClickedProduct', {
+          product: this.salesProduct[n]
+        })
       this.clickedProductIndex = n
       this.productClicked = true
       this.clickedProduct = []
@@ -694,6 +710,9 @@ export default {
 }
 </style>
 <style scoped>
+.makeHoverLink:hover{
+  cursor: pointer!important;
+}
 #btn {
   height: 50px;
   min-width: 150px;
