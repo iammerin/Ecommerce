@@ -186,7 +186,7 @@
                                   :src="salesProduct[+index + i].image"
                                   height="200"
                                   :width="checkMobileDesktop? 320:'100%' "
-                                  @click="magnifyClicked(+index + i)"
+                                  @click="magnifyClicked(salesProduct[+index + i].title, +index + i)"
                                 >
                                   <v-expand-transition>
                                     <v-row
@@ -222,7 +222,7 @@
                                   </template>
                                 </v-img>
                                 <v-card-text
-                                  @click="magnifyClicked(index)"
+                                  @click="magnifyClicked(salesProduct[+index + i].title,index)"
                                 >
                                   <v-container
                                     class="productDetails"
@@ -449,15 +449,16 @@ export default {
           this.productAddedSnackbar = true
         })
     },
-    magnifyClicked (n) {
+    magnifyClicked (title, n) {
       this.$store
         .dispatch('changeClickedProduct', {
           product: this.salesProduct[n]
         })
-      this.clickedProductIndex = n
-      this.productClicked = true
-      this.clickedProduct = []
-      this.clickedProduct.push(this.salesProduct[n])
+      this.$router.push('/product/' + title.toLowerCase())
+      // this.clickedProductIndex = n
+      // this.productClicked = true
+      // this.clickedProduct = []
+      // this.clickedProduct.push(this.salesProduct[n])
     },
     initializeClock () {
       const timeinterval = setInterval(() => {

@@ -24,7 +24,7 @@
                 :src="product.image"
                 height="200"
                 :width="checkMobileDesktop? 300:'100%' "
-                @click="magnifyClicked(index)"
+                @click="magnifyClicked(product.title, index)"
               >
                 <v-expand-transition>
                   <v-row
@@ -39,7 +39,7 @@
                       <v-icon
                         dark
                         class="text-h2"
-                        @click="magnifyClicked(index)"
+                        @click="magnifyClicked(product.title, index)"
                         small
                       >
                         mdi-magnify-plus-outline
@@ -328,11 +328,16 @@ export default {
     }
   },
   methods: {
-    magnifyClicked (n) {
-      this.clickedProductIndex = n
-      this.productClicked = true
-      this.clickedProduct = []
-      this.clickedProduct.push(this.allProducts[n])
+    magnifyClicked (title, n) {
+      this.$store
+        .dispatch('changeClickedProduct', {
+          product: this.allProducts[n]
+        })
+      this.$router.push('/product/' + title.toLowerCase())
+      // this.clickedProductIndex = n
+      // this.productClicked = true
+      // this.clickedProduct = []
+      // this.clickedProduct.push(this.allProducts[n])
     },
     checkMobileDesktop () {
       console.log(this.$vuetify.breakpoint.name)
