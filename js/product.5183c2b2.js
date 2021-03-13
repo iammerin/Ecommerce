@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["product"],{d2f1:function(t,e,n){"use strict";n.r(e);var r=function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("v-row",{attrs:{align:"center",justify:"center"}},[n("v-col",{attrs:{cols:"12"}},[n("router-view")],1)],1)},o=[],a={},c=a,l=n("2877"),s=n("6544"),u=n.n(s),i=n("62ad"),w=n("0fd9"),d=Object(l["a"])(c,r,o,!1,null,null,null);e["default"]=d.exports;u()(d,{VCol:i["a"],VRow:w["a"]})}}]);
+//# sourceMappingURL=product.5183c2b2.js.map
